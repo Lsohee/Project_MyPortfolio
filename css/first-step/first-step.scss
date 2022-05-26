@@ -50,62 +50,67 @@
   overflow: hidden;
 
   &>div {
-    @include section-check(100%, 100%,black,rgba(34, 51, 0, 0))
+    @include section-check(100%, 100%, black, rgba(34, 51, 0, 0))
   }
 
   &>div:nth-child(1) {
-position: absolute;
-  z-index: 5;
-
-  &>div:nth-child(1) {
-    @include section-check(400px, fit-content);
     position: absolute;
-    left: 200px;
-    top: 400px;
-  
-  }
-  &>div:nth-child(2) {
+    z-index: 5;
+
+    &>div:nth-child(1) {
+      @include section-check(400px, fit-content);
+      position: absolute;
+      left: 200px;
+      top: 400px;
+      font-size: 20px;
+    }
+
+    &>div:nth-child(2) {
       @include section-check(14em, 14em, black, rgba(137, 24, 24, 0.624));
       border-radius: 50%;
       position: absolute;
       left: 1000px;
-      top: 400px;
+      top: 370px;
     }
   }
 
   &>div:nth-child(2) {
     position: absolute;
-      z-index: 4;
-  &>div{
-    @include section-check(5em, 5em);
-    border-radius: 50%;
-    position: absolute;
-    left: 1000px;
-    top: 400px;
+    z-index: 4;
+
+    &>div {
+      @include section-check(7em, 7em,black,rgba(85, 236, 21, 0.148));
+      border-radius: 50%;
+      position: absolute;
+      left: 900px;
+      top: 400px;
     }
   }
 
   &>div:nth-child(3) {
-position: absolute;
-  z-index: 3;
-//   &>div{
-  //   @include section-check(3em, 3em);
-  //   border-radius: 50%;
-  //   position: absolute;
-  //   left: 1000px;
-  //   top: 1000px;
+    position: absolute;
+    z-index: 3;
+
+    &>div {
+      @include section-check(3em, 3em);
+      border-radius: 50%;
+      position: absolute;
+      left: 1100px;
+      top: 400px;
+    }
   }
 
   &>div:nth-child(4) {
-position: absolute;
-  z-index: 2;
-//   &>div{
-  //   @include section-check(3em, 3em);
-  //   border-radius: 50%;
-  //   position: absolute;
-  //   left: 1200px;
-  //   top: 1000px;
+    position: absolute;
+    z-index: 2;
+      &>div{
+      @include section-check(1em, 1em);
+      border-radius: 50%;
+      position: absolute;
+      left: 1080px;
+      top: 430px;
   }
+}
 
 }
 

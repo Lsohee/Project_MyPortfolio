@@ -1,4 +1,4 @@
-.zoomInfirst{
+.zoomInFirst{
   animation-name:zoomInfirst;
   animation-duration: 2s;
   animation-fill-mode: forwards;  
@@ -10,14 +10,28 @@
   animation-fill-mode: forwards;  
 }
 
+.zoomInThird{
+  animation-name:zoomInThird;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;  
+}
+
+.zoomInFourth{
+  animation-name:zoomInFourth;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;  
+}
+
+
 @keyframes zoomInfirst{
   0% {
     /* width:10em; */
     transform: scale(1);
+    transform-origin: 60% 60%;
   }
   100% {
-    transform: scale(5);
-    transform-origin: 50% 50%;
+    transform: scale(3);
+    transform-origin: 60% 60%;
 
   }
 }
@@ -26,10 +40,36 @@
   0% {
     /* width:10em; */
     transform: scale(1);
+    transform-origin: 60% 60%;
   }
   100% {
-    transform: scale(3);
-    transform-origin: 50% 50%;
+    transform: scale(1.6);
+    transform-origin: 60% 60%;
+
+  }
+}
+
+@keyframes zoomInThird {
+  0% {
+    /* width:10em; */
+    transform: scale(1);
+    transform-origin: 60% 60%;
+  }
+  100% {
+    transform: scale(1.4);
+    transform-origin: 60% 60%;
+
+  }
+}
+@keyframes zoomInFourth {
+  0% {
+    /* width:10em; */
+    transform: scale(1);
+    transform-origin: 60% 60%;
+  }
+  100% {
+    transform: scale(1.2);
+    transform-origin: 60% 60%;
 
   }
 }

@@ -63,6 +63,7 @@
   position: absolute;
   left: 200px;
   top: 400px;
+  font-size: 20px;
 }
 #root2 > div:nth-child(1) > div:nth-child(2) {
   width: 14em;
@@ -72,27 +73,47 @@
   border-radius: 50%;
   position: absolute;
   left: 1000px;
-  top: 400px;
+  top: 370px;
 }
 #root2 > div:nth-child(2) {
   position: absolute;
   z-index: 4;
 }
 #root2 > div:nth-child(2) > div {
-  width: 5em;
-  height: 5em;
+  width: 7em;
+  height: 7em;
   border: 1px solid black;
-  background-color: #ccc;
+  background-color: rgba(85, 236, 21, 0.148);
   border-radius: 50%;
   position: absolute;
-  left: 1000px;
+  left: 900px;
   top: 400px;
 }
 #root2 > div:nth-child(3) {
   position: absolute;
   z-index: 3;
 }
+#root2 > div:nth-child(3) > div {
+  width: 3em;
+  height: 3em;
+  border: 1px solid black;
+  background-color: #ccc;
+  border-radius: 50%;
+  position: absolute;
+  left: 1100px;
+  top: 400px;
+}
 #root2 > div:nth-child(4) {
   position: absolute;
   z-index: 2;
+}
+#root2 > div:nth-child(4) > div {
+  width: 1em;
+  height: 1em;
+  border: 1px solid black;
+  background-color: #ccc;
+  border-radius: 50%;
+  position: absolute;
+  left: 1080px;
+  top: 430px;
 }/*# sourceMappingURL=first-step.css.map */
