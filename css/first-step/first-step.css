@@ -1,7 +1,8 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 #root1 {
@@ -9,28 +10,45 @@
   height: 70vh;
   border: 1px solid black;
   background-color: #ccc;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
+
 #root1 > div {
   width: 50%;
   height: 60%;
   border: 1px solid 0;
   background-color: #ccc;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   position: relative;
   left: 10%;
   top: 10%;
 }
+
 #root1 > div > div:nth-child(1) {
   font-size: 3em;
 }
+
 #root1 > div > div:nth-child(2) {
   font-size: 1.2em;
 }
+
 #root1 > div > div:nth-child(3) {
   font-size: 2em;
 }
@@ -43,16 +61,19 @@
   position: relative;
   overflow: hidden;
 }
+
 #root2 > div {
   width: 100%;
   height: 100%;
   border: 1px solid black;
   background-color: rgba(34, 51, 0, 0);
 }
+
 #root2 > div:nth-child(1) {
   position: absolute;
   z-index: 5;
 }
+
 #root2 > div:nth-child(1) > div:nth-child(1) {
   width: 400px;
   height: -webkit-fit-content;
@@ -62,23 +83,26 @@
   background-color: #ccc;
   position: absolute;
   left: 200px;
-  top: 400px;
+  top: 300px;
   font-size: 20px;
 }
+
 #root2 > div:nth-child(1) > div:nth-child(2) {
-  width: 14em;
-  height: 14em;
+  width: 20em;
+  height: 20em;
   border: 1px solid black;
   background-color: rgba(137, 24, 24, 0.624);
   border-radius: 50%;
   position: absolute;
   left: 1000px;
-  top: 370px;
+  top: 300px;
 }
+
 #root2 > div:nth-child(2) {
   position: absolute;
   z-index: 4;
 }
+
 #root2 > div:nth-child(2) > div {
   width: 7em;
   height: 7em;
@@ -89,10 +113,12 @@
   left: 900px;
   top: 400px;
 }
+
 #root2 > div:nth-child(3) {
   position: absolute;
   z-index: 3;
 }
+
 #root2 > div:nth-child(3) > div {
   width: 3em;
   height: 3em;
@@ -103,10 +129,12 @@
   left: 1100px;
   top: 400px;
 }
+
 #root2 > div:nth-child(4) {
   position: absolute;
   z-index: 2;
 }
+
 #root2 > div:nth-child(4) > div {
   width: 1em;
   height: 1em;
@@ -116,4 +144,5 @@
   position: absolute;
   left: 1080px;
   top: 430px;
-}/*# sourceMappingURL=first-step.css.map */
+}
+/*# sourceMappingURL=first-step.css.map */

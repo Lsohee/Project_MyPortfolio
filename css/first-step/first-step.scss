@@ -61,16 +61,16 @@
       @include section-check(400px, fit-content);
       position: absolute;
       left: 200px;
-      top: 400px;
+      top: 300px;
       font-size: 20px;
     }
 
     &>div:nth-child(2) {
-      @include section-check(14em, 14em, black, rgba(137, 24, 24, 0.624));
+      @include section-check(20em, 20em, black, rgba(137, 24, 24, 0.624));
       border-radius: 50%;
       position: absolute;
       left: 1000px;
-      top: 370px;
+      top: 300px;
     }
   }
 
