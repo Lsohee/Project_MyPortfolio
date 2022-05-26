@@ -46,11 +46,15 @@ console.dir(root2);
   root2.addEventListener("wheel",(event)=>{
     console.log(event.wheelDelta)
     if(event.wheelDelta > 0 ){
-      zoomIn(layerArr[0],2,60,60);
-      zoomIn(layerArr[1],1.2,60,60)
-  }else if(event.wheelDelta<0){
-
-
+      zoomIn(layerArr[0],4,-100,-30);
+      zoomIn(layerArr[1],3,-300,-60);
+      zoomIn(layerArr[2],1.4,-300,-30);
+      zoomIn(layerArr[3],1.2,-300,-30);
+    }else if(event.wheelDelta<0){
+      zoomOut(layerArr[0],4,-100,-30);
+      zoomOut(layerArr[1],3,-300,-60);
+      zoomOut(layerArr[2],1.4,-300,-30);
+      zoomOut(layerArr[3],1.2,-300,-30);
   }
 })
 
@@ -95,13 +99,21 @@ console.dir(layerArr[0].style);
 function zoomIn(layerDiv,ratio,layerDivX,layerDivY){
       layerDiv.animate([
         {transform:"scale(1)"},
-        {transform:`scale(${ratio})  translate(${layerDivX}px ${layerDivY}%)`}
+        {transform:`scale(${ratio})  translate(${layerDivX}px, ${layerDivY}px )`}
       ],{
         duration:2000,
         fill:"forwards"
       })
   }
-  
+  function zoomOut(layerDiv,ratio,layerDivX,layerDivY){
+    layerDiv.animate([
+      {transform:`scale(${ratio})  translate(${layerDivX}px, ${layerDivY}px )`}
+      ,{transform:"scale(1)"}
+    ],{
+      duration:2000,
+      fill:"forwards"
+    })
+}
   
   
   // todo animate 를 쓰려고 시도해봤으나 막힘
