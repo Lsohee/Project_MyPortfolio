@@ -1,42 +1,35 @@
-.zoomInBox{
-  animation-name:zoomInBox;
-  animation-duration: 2s;  
-  animation-fill-mode: forwards;  
-}
-.zoomOutBox{
-  animation-name:zoomOutBox;
-  animation-duration: 2s;
-  animation-fill-mode: forwards;  
-}
-.zoomIn{
-  animation-name:zoomIn;
+.zoomInfirst{
+  animation-name:zoomInfirst;
   animation-duration: 2s;
   animation-fill-mode: forwards;  
 }
 
-@keyframes zoomIn{
+.zoomInSecond{
+  animation-name:zoomInSecond;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;  
+}
+
+@keyframes zoomInfirst{
   0% {
     /* width:10em; */
+    transform: scale(1);
   }
   100% {
-    width:700px;
-    height:700px;
+    transform: scale(5);
+    transform-origin: 50% 50%;
+
   }
 }
 
-@keyframes zoomInBox {
-  from{
-    
+@keyframes zoomInSecond {
+  0% {
+    /* width:10em; */
+    transform: scale(1);
   }
-  to{
-    width:100%;
-  }
-}
-@keyframes zoomOutBox {
-  from{
-    
-  }
-  to{
-    width:0%;
+  100% {
+    transform: scale(3);
+    transform-origin: 50% 50%;
+
   }
 }

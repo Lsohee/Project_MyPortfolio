@@ -35,7 +35,25 @@
   font-size: 2em;
 }
 
-.textContents {
+#root2 {
+  width: 100vw;
+  height: 100vh;
+  border: 1px solid black;
+  background-color: #ccc;
+  position: relative;
+  overflow: hidden;
+}
+#root2 > div {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  background-color: rgba(34, 51, 0, 0);
+}
+#root2 > div:nth-child(1) {
+  position: absolute;
+  z-index: 5;
+}
+#root2 > div:nth-child(1) > div:nth-child(1) {
   width: 400px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -44,42 +62,37 @@
   background-color: #ccc;
   position: absolute;
   left: 200px;
-  top: 1000px;
+  top: 400px;
 }
-
-#root2 {
-  width: 100vw;
-  height: 100vh;
+#root2 > div:nth-child(1) > div:nth-child(2) {
+  width: 14em;
+  height: 14em;
   border: 1px solid black;
-  background-color: #ccc;
-  display: flex;
-  flex-direction: row;
+  background-color: rgba(137, 24, 24, 0.624);
+  border-radius: 50%;
+  position: absolute;
+  left: 1000px;
+  top: 400px;
 }
 #root2 > div:nth-child(2) {
-  width: 7em;
-  height: 7em;
-  border: 1px solid black;
-  background-color: #ccc;
-  border-radius: 50%;
+  position: absolute;
+  z-index: 4;
 }
-#root2 > div:nth-child(3) {
+#root2 > div:nth-child(2) > div {
   width: 5em;
   height: 5em;
   border: 1px solid black;
   background-color: #ccc;
   border-radius: 50%;
+  position: absolute;
+  left: 1000px;
+  top: 400px;
+}
+#root2 > div:nth-child(3) {
+  position: absolute;
+  z-index: 3;
 }
 #root2 > div:nth-child(4) {
-  width: 3em;
-  height: 3em;
-  border: 1px solid black;
-  background-color: #ccc;
-  border-radius: 50%;
-}
-#root2 > div:nth-child(5) {
-  width: 3em;
-  height: 3em;
-  border: 1px solid black;
-  background-color: #ccc;
-  border-radius: 50%;
+  position: absolute;
+  z-index: 2;
 }/*# sourceMappingURL=first-step.css.map */
