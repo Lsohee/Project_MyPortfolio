@@ -3,6 +3,8 @@ todo1: 요소 생성
 1. 요소 동적 생성 or 요소 호출
 뭐가 나을까 일단 html로 다 만들어놯으니까 호출로
 */
+const container = document.getElementById("container");
+const root1 = document.getElementById("root1")
 const root2 = document.getElementById("root2");
 // console.log(root2);
 // console.dir(root2);
@@ -33,13 +35,22 @@ console.dir(root2);
   // 보니까 이 값은 딱 두가지 종류다 아래로 내리면 음수 위로 올리면 양수 
   // ?그러면 음수일때 줌아웃 앙수일떄 줌인?
   // }
+  window.addEventListener("wheel", function(){
+    // console.log(window.scrollY)
+    if(this.window.scrollY===570.7601928710938){
+      root1.remove();
+    }
+  })
+  
   
   root2.addEventListener("wheel",(event)=>{
-  console.log(event.wheelDelta)
-  if(event.wheelDelta > 0 ){
-    console.log("zoom in");
+    console.log(event.wheelDelta)
+    if(event.wheelDelta > 0 ){
+      zoomIn(layerArr[0],2,60,60);
+      zoomIn(layerArr[1],1.2,60,60)
   }else if(event.wheelDelta<0){
-    console.log("zoom out")
+
+
   }
 })
 
@@ -59,6 +70,11 @@ console.dir(root2);
 1. click이벤트로 바꾼다
 2. 휠을 굴린 만큼" 을 뜻하는 값을 찾는다
 */ 
+
+
+
+
+
 /* 
 todo3:  변수
 1. 움직이는 레이어 div
@@ -71,8 +87,31 @@ todo4: 줌인 함수 설계
 - width와 height가 1씩 커진다(setInterval)
 - 원하는 크기가 되었을때 (if문)
 - 멈춘다 (setTimeOut)
+*/
+console.dir(layerArr[0].style);
+// layerArr[0].style.size = 7;
+// layerArr[0].style.zoom = 1.2;
 
-todo5: 줌아웃 함수
+function zoomIn(layerDiv,ratio,layerDivX,layerDivY){
+      layerDiv.animate([
+        {transform:"scale(1)"},
+        {transform:`scale(${ratio})  translate(${layerDivX}px ${layerDivY}%)`}
+      ],{
+        duration:2000,
+        fill:"forwards"
+      })
+  }
+  
+  
+  
+  // todo animate 를 쓰려고 시도해봤으나 막힘
+  
+  // let In = setInterval(function(layerDiv){
+  //   if()
+  // },2000)
+
+/* 
+todo5: 줌아웃 함수 transform-origin:${layerDivX}% ${layerDivY}%
 1. 크기가 작아지는 움직임 주는 함수(setInterval)
 - width와 height가 1씩 작아진다(setInterval)
 - 원하는 크기가 되었을때 (if문)
