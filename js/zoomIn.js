@@ -1,13 +1,42 @@
 /*
 todo1: 요소 생성
-1. 요소 동적 생성
-2. 요소 호출
+1. 요소 동적 생성 or 요소 호출
+뭐가 나을까 일단 html로 다 만들어놯으니까 호출로
+*/
+const root2 = document.getElementById("root2");
+// console.log(root2);
+// console.dir(root2);
+const layerArr = Array.from(root2.children);
+// console.log(Array.isArray(layerArr));
 
+
+/* 
 todo2: 이벤트 지정
 1. wheel해서 나오는 값을 가져온다
 2. 그 값이 일정 숫자가 되면 (구간을 설정?)
 3. 이벤트 발생
+*/
+console.dir(window);
+console.dir(root2);
 
+let wheelValue =WheelEvent.prototype.deltaX;
+console.log(typeof wheelValue);
+// todo 질문 : wheel을 굴렸을때 스크롤의 높이 말고 휠을 굴린 만큼 값으로 치환해주는 코드를 찾아서 window의 wheelEvent를 찾게 되었는데
+// memo 아 그럼 property가 유사 배열인가요? 갑자기 질문하다가 생각났습니다 
+
+
+
+// window.addEventListener("wheel",()=>{
+// })
+// ?스크롤 값을 가져오긴 했는데 현재 스크롤 값이 계속 가져와지지 않음 -> 검색
+// memo window에 이벤트 wheel 달아주면 됨
+/*
+!문제가 생김 scrollX 는 스크롤의 위치좌표라 무한대로 늘어나지 않음 
+? 스크롤의 높이로 이벤트를 제어할 수 없다면 어떻게 해야 좋을까?
+1. click이벤트로 바꾼다
+2. 휠을 굴린 만큼" 을 뜻하는 값을 찾는다
+*/ 
+/* 
 todo3:  변수
 1. 움직이는 레이어 div
 2. 크기 증가률
