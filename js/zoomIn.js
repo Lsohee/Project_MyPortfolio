@@ -19,8 +19,31 @@ todo2: 이벤트 지정
 console.dir(window);
 console.dir(root2);
 
-let wheelValue =WheelEvent.prototype.deltaX;
-console.log(typeof wheelValue);
+
+
+
+// function zoom(event){
+  // event.preventDefault();
+  //? 이게 뭐야?
+  /*
+  *Event 인터페이스의 preventDefault() 메서드는 어떤 이벤트를 명시적으로 처리하지 않은 경우,
+  *해당 이벤트에 대한 사용자 에이전트의 기본 동작(이 뭘까)을 실행하지 않도록 지정합니다.
+  */ 
+  // console.log(event);
+  // 보니까 이 값은 딱 두가지 종류다 아래로 내리면 음수 위로 올리면 양수 
+  // ?그러면 음수일때 줌아웃 앙수일떄 줌인?
+  // }
+  
+  root2.addEventListener("wheel",(event)=>{
+  console.log(event.wheelDelta)
+  if(event.wheelDelta > 0 ){
+    console.log("zoom in");
+  }else if(event.wheelDelta<0){
+    console.log("zoom out")
+  }
+})
+
+// console.dir(wheelValue);
 // todo 질문 : wheel을 굴렸을때 스크롤의 높이 말고 휠을 굴린 만큼 값으로 치환해주는 코드를 찾아서 window의 wheelEvent를 찾게 되었는데
 // memo 아 그럼 property가 유사 배열인가요? 갑자기 질문하다가 생각났습니다 
 
