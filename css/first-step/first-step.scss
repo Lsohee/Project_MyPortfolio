@@ -42,62 +42,43 @@
     }
   }
 }
+.textContents{
+  @include section-check(400px,fit-content);
+  position: absolute;
+  left:200px;
+  top:1000px;
 
+}
 #root2 {
   @include section-check(100vw, 100vh);
   @include display-flex($flexDirection:row);
-}
 
-#box1 {
-  @include section-check(50%, 100%);
-  @include display-flex(null, center, center);
-
-  &>div {
-    @include section-check(50%, fit-content);
-    position: relative;
-    left: -15%;
+  &>div:nth-child(2){
+    @include section-check(7em,7em);
+    border-radius: 50%;
+  }
+  &>div:nth-child(3){
+    @include section-check(5em,5em);
+    border-radius: 50%;
+  }
+  &>div:nth-child(4){
+    @include section-check(3em,3em);
+    border-radius: 50%;
+  }
+  &>div:nth-child(5){
+    @include section-check(3em,3em);
+    border-radius: 50%;
   }
 }
+  
+    // todo 여기있는 반복되는 코드들 @mixin으로 묶어서 정리
+    // ? 여기서 이미지를 쓰면 box2를 키우면 img도 같이 커지지 않을까?
+    // ^ 그래서 이미지를 넣고 js로 wheel이벤트시 box2가 커지게함 -> 크기비율이 부모의 값에 연결되어있는 상대 값이기 때문에 box2가 커지면 img들도 같은 비율을 유지하면서 커질 것이다! 라고 생각
+    // memo img로 하니까 깨진다 -> png라서 그런듯 svg로 가져와볼것
+    // memo css scale를 쓰니까 굳이 이미지로 할 필요가 없어짐   
+  
+    // memo 부모 크기를 넘지 않음 -> display 때문   
+    // memo translate를 넣었을때 고정된 위치에서 커지게 하기 위해서 모든 요소를 하나의 root에 넣고 position으로 강제 지정해보기로함 --> 왜 대 공사 겠는디? 
 
-#box2 {
-  @include section-check(50%, 100%);
-  @include display-flex(row, center, center);
-
-
-  // todo 여기있는 반복되는 코드들 @mixin으로 묶어서 정리
-  // ? 여기서 이미지를 쓰면 box2를 키우면 img도 같이 커지지 않을까?
-  // ^ 그래서 이미지를 넣고 js로 wheel이벤트시 box2가 커지게함 -> 크기비율이 부모의 값에 연결되어있는 상대 값이기 때문에 box2가 커지면 img들도 같은 비율을 유지하면서 커질 것이다! 라고 생각
-  &>img:nth-child(1) {
-    position: relative;
-    left: 40%;
-    z-index: 5;
-  }
-
-  &>img:nth-child(2) {
-    position: relative;
-    left: 23%;
-    width:20%;
-    z-index: 4;
-  }
-
-  &>img:nth-child(3) {
-    position: relative;
-    left: -4%;
-    width:10%;
-    z-index: 3;
-  }
-
-  &>img:nth-child(4) {
-    position: relative;
-    left: -19%;
-    width:5%;
-    z-index: 2;
-  }
-
-  &>img:nth-child(5) {
-    position: relative;
-    left: -16%;
-    width:2%;
-    z-index: 1;
-  }
-}
+    
+    // memo 모든 위치를 absolute로 줘야 다른 요소가 없어지거나 나타날때 위치가 이동하지 않음

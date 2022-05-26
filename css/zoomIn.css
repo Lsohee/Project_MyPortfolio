@@ -1,0 +1,42 @@
+.zoomInBox{
+  animation-name:zoomInBox;
+  animation-duration: 2s;  
+  animation-fill-mode: forwards;  
+}
+.zoomOutBox{
+  animation-name:zoomOutBox;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;  
+}
+.zoomIn{
+  animation-name:zoomIn;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;  
+}
+
+@keyframes zoomIn{
+  0% {
+    /* width:10em; */
+  }
+  100% {
+    width:700px;
+    height:700px;
+  }
+}
+
+@keyframes zoomInBox {
+  from{
+    
+  }
+  to{
+    width:100%;
+  }
+}
+@keyframes zoomOutBox {
+  from{
+    
+  }
+  to{
+    width:0%;
+  }
+}
