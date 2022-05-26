@@ -3,42 +3,51 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 @mixin display-flex($flexDirection:column, $justify:null, $align:null) {
   display: flex;
   flex-direction: $flexDirection;
   justify-content: $justify;
   align-items: $align;
 }
+
 @mixin section-check ($width:100%, $hieght:100%, $color:black, $bgc:#ccc) {
   width: $width;
   height: $hieght;
   border: 1px solid $color;
   background-color: $bgc;
 }
+
 #root1 {
   @include section-check(100vw, 70vh);
   @include display-flex($justify: center);
+
   &>div {
-    @include section-check(50%, 70%, 0);
+    @include section-check(50%, 60%, 0);
     @include display-flex($justify: space-around);
     position: relative;
     left: 10%;
     top: 10%;
+
     &>div:nth-child(1) {
-      font-size: 50px;
+      font-size: 3em;
     }
+
     &>div:nth-child(2) {
-      font-size: 18px;
+      font-size: 1.2em;
     }
+
     &>div:nth-child(3) {
-      font-size: 30px;
+      font-size: 2em;
     }
   }
 }
+
 #root2 {
   @include section-check(100vw, 100vh);
   @include display-flex($flexDirection:row);
 }
+
 #box1 {
   @include section-check(50%, 100%);
   @include display-flex(null, center, center);
@@ -54,8 +63,40 @@
   @include section-check(50%, 100%);
   @include display-flex(row, center, center);
 
-  &>div {
-    @include section-check(100px, 100px);
-    border-radius: 50%;
+
+  // todo 여기있는 반복되는 코드들 @mixin으로 묶어서 정리
+  // ? 여기서 이미지를 쓰면 box2를 키우면 img도 같이 커지지 않을까?
+  &>img:nth-child(1) {
+    position: relative;
+    left: 40%;
+    z-index: 5;
+  }
+
+  &>img:nth-child(2) {
+    position: relative;
+    left: 23%;
+    width:20%;
+    z-index: 4;
+  }
+
+  &>img:nth-child(3) {
+    position: relative;
+    left: -4%;
+    width:10%;
+    z-index: 3;
+  }
+
+  &>img:nth-child(4) {
+    position: relative;
+    left: -19%;
+    width:5%;
+    z-index: 2;
+  }
+
+  &>img:nth-child(5) {
+    position: relative;
+    left: -16%;
+    width:2%;
+    z-index: 1;
   }
 }
