@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@mixin display-flex($flexDirection:column, $justify:null, $align:null) {
+  display: flex;
+  flex-direction: $flexDirection;
+  justify-content: $justify;
+  align-items: $align;
+}
+@mixin section-check ($width:100%, $hieght:100%, $color:black, $bgc:#ccc) {
+  width: $width;
+  height: $hieght;
+  border: 1px solid $color;
+  background-color: $bgc;
+}
+#root1 {
+  @include section-check(100vw, 70vh);
+  @include display-flex($justify: center);
+  &>div {
+    @include section-check(50%, 70%, 0);
+    @include display-flex($justify: space-around);
+    position: relative;
+    left: 10%;
+    top: 10%;
+    &>div:nth-child(1) {
+      font-size: 50px;
+    }
+    &>div:nth-child(2) {
+      font-size: 18px;
+    }
+    &>div:nth-child(3) {
+      font-size: 30px;
+    }
+  }
+}
+#root2 {
+  @include section-check(100vw, 100vh);
+  @include display-flex($flexDirection:row);
+}
+#box1 {
+  @include section-check(50%, 100%);
+  @include display-flex(null, center, center);
+
+  &>div {
+    @include section-check(50%, fit-content);
+    position: relative;
+    left: -15%;
+  }
+}
+
+#box2 {
+  @include section-check(50%, 100%);
+  @include display-flex(row, center, center);
+
+  &>div {
+    @include section-check(100px, 100px);
+    border-radius: 50%;
+  }
+}

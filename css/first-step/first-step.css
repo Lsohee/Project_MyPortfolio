@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root1 {
+  width: 100vw;
+  height: 70vh;
+  border: 1px solid black;
+  background-color: #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#root1 > div {
+  width: 50%;
+  height: 70%;
+  border: 1px solid 0;
+  background-color: #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  left: 10%;
+  top: 10%;
+}
+#root1 > div > div:nth-child(1) {
+  font-size: 50px;
+}
+#root1 > div > div:nth-child(2) {
+  font-size: 18px;
+}
+#root1 > div > div:nth-child(3) {
+  font-size: 30px;
+}
+
+#root2 {
+  width: 100vw;
+  height: 100vh;
+  border: 1px solid black;
+  background-color: #ccc;
+  display: flex;
+  flex-direction: row;
+}
+
+#box1 {
+  width: 50%;
+  height: 100%;
+  border: 1px solid black;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#box1 > div {
+  width: 50%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 1px solid black;
+  background-color: #ccc;
+  position: relative;
+  left: -15%;
+}
+
+#box2 {
+  width: 50%;
+  height: 100%;
+  border: 1px solid black;
+  background-color: #ccc;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#box2 > div {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  background-color: #ccc;
+  border-radius: 50%;
+}/*# sourceMappingURL=first-step.css.map */
