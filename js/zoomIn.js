@@ -25,38 +25,50 @@ console.dir(root2);
 
 
 // function zoom(event){
-  // event.preventDefault();
-  //? 이게 뭐야?
-  /*
-  *Event 인터페이스의 preventDefault() 메서드는 어떤 이벤트를 명시적으로 처리하지 않은 경우,
-  *해당 이벤트에 대한 사용자 에이전트의 기본 동작(이 뭘까)을 실행하지 않도록 지정합니다.
-  */ 
-  // console.log(event);
-  // 보니까 이 값은 딱 두가지 종류다 아래로 내리면 음수 위로 올리면 양수 
-  // ?그러면 음수일때 줌아웃 앙수일떄 줌인?
-  // }
-  window.addEventListener("wheel", function(){
-    // console.log(window.scrollY)
-    if(this.window.scrollY===570.7601928710938){
-      root1.remove();
-    }
-  })
-  
-  
-  root2.addEventListener("wheel",(event)=>{
-    console.log(event.wheelDelta)
-    if(event.wheelDelta > 0 ){
-      zoomIn(layerArr[0],4,-100,-30);
-      zoomIn(layerArr[1],3,-300,-60);
-      zoomIn(layerArr[2],1.4,-300,-30);
-      zoomIn(layerArr[3],1.2,-300,-30);
-    }else if(event.wheelDelta<0){
-      zoomOut(layerArr[0],4,-100,-30);
-      zoomOut(layerArr[1],3,-300,-60);
-      zoomOut(layerArr[2],1.4,-300,-30);
-      zoomOut(layerArr[3],1.2,-300,-30);
+// event.preventDefault();
+// current; 
+//? 이게 뭐야?
+/*
+*Event 인터페이스의 preventDefault() 메서드는 어떤 이벤트를 명시적으로 처리하지 않은 경우,
+ *해당 이벤트에 대한 사용자 에이전트의 기본 동작(이 뭘까)을 실행하지 않도록 지정합니다.
+ */
+// console.log(event);
+// 보니까 이 값은 딱 두가지 종류다 아래로 내리면 음수 위로 올리면 양수 
+// ?그러면 음수일때 줌아웃 앙수일떄 줌인?
+// }
+window.addEventListener("wheel", function () {
+  // console.log(window.scrollY)
+  if (this.window.scrollY === 570.7601928710938) {
+    root1.remove();
   }
 })
+
+root2.addEventListener("wheel", (event) => {
+  if (event.wheelDelta > 0) {
+    zoomInMy();
+    current=1
+  } else if (event.wheelDelta < 0) {
+    zoomOutMy();
+  }
+})
+
+
+
+function zoomInMy() {
+  // current=0  
+  zoomIn(layerArr[0], 4, -100, -30);
+  zoomIn(layerArr[1], 3, -300, -60);
+  zoomIn(layerArr[2], 1.4, -300, -30);
+  zoomIn(layerArr[3], 1.2, -300, -30);
+}
+
+function zoomOutMy() {
+  zoomOut(layerArr[0], 4, -100, -30);
+  zoomOut(layerArr[1], 3, -300, -60);
+  zoomOut(layerArr[2], 1.4, -300, -30);
+  zoomOut(layerArr[3], 1.2, -300, -30);
+}
+
 
 // console.dir(wheelValue);
 // todo 질문 : wheel을 굴렸을때 스크롤의 높이 말고 휠을 굴린 만큼 값으로 치환해주는 코드를 찾아서 window의 wheelEvent를 찾게 되었는데
@@ -73,7 +85,7 @@ console.dir(root2);
 ? 스크롤의 높이로 이벤트를 제어할 수 없다면 어떻게 해야 좋을까?
 1. click이벤트로 바꾼다
 2. 휠을 굴린 만큼" 을 뜻하는 값을 찾는다
-*/ 
+*/
 
 
 
@@ -96,31 +108,40 @@ console.dir(layerArr[0].style);
 // layerArr[0].style.size = 7;
 // layerArr[0].style.zoom = 1.2;
 
-function zoomIn(layerDiv,ratio,layerDivX,layerDivY){
-      layerDiv.animate([
-        {transform:"scale(1)"},
-        {transform:`scale(${ratio})  translate(${layerDivX}px, ${layerDivY}px )`}
-      ],{
-        duration:2000,
-        fill:"forwards"
-      })
-  }
-  function zoomOut(layerDiv,ratio,layerDivX,layerDivY){
-    layerDiv.animate([
-      {transform:`scale(${ratio})  translate(${layerDivX}px, ${layerDivY}px )`}
-      ,{transform:"scale(1)"}
-    ],{
-      duration:2000,
-      fill:"forwards"
-    })
+function zoomIn(layerDiv, ratio, layerDivX, layerDivY) {
+
+  // if(current ===0 ){
+  layerDiv.animate([{
+      transform: "scale(1)"
+    },
+    {
+      transform: `scale(${ratio}) 
+      translate(${layerDivX}px, ${layerDivY}px )`
+    }
+  ], {
+    duration: 2000,
+    fill: "forwards"
+  })
 }
-  
-  
-  // todo animate 를 쓰려고 시도해봤으나 막힘
-  
-  // let In = setInterval(function(layerDiv){
-  //   if()
-  // },2000)
+// }
+
+function zoomOut(layerDiv, ratio, layerDivX, layerDivY) {
+  layerDiv.animate([{
+    transform: `scale(${ratio})  translate(${layerDivX}px, ${layerDivY}px )`
+  }, {
+    transform: "scale(1)"
+  }], {
+    duration: 2000,
+    fill: "forwards"
+  })
+}
+
+
+// todo animate 를 쓰려고 시도해봤으나 막힘
+
+// let In = setInterval(function(layerDiv){
+//   if()
+// },2000)
 
 /* 
 todo5: 줌아웃 함수 transform-origin:${layerDivX}% ${layerDivY}%
@@ -128,4 +149,4 @@ todo5: 줌아웃 함수 transform-origin:${layerDivX}% ${layerDivY}%
 - width와 height가 1씩 작아진다(setInterval)
 - 원하는 크기가 되었을때 (if문)
 - 멈춘다 (setTimeOut)
-*/ 
+*/
