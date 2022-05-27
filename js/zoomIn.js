@@ -26,10 +26,9 @@ console.dir(root2);
 
 // function zoom(event){
 // event.preventDefault();
-// current; 
 //? 이게 뭐야?
 /*
-*Event 인터페이스의 preventDefault() 메서드는 어떤 이벤트를 명시적으로 처리하지 않은 경우,
+ *Event 인터페이스의 preventDefault() 메서드는 어떤 이벤트를 명시적으로 처리하지 않은 경우,
  *해당 이벤트에 대한 사용자 에이전트의 기본 동작(이 뭘까)을 실행하지 않도록 지정합니다.
  */
 // console.log(event);
@@ -37,37 +36,64 @@ console.dir(root2);
 // ?그러면 음수일때 줌아웃 앙수일떄 줌인?
 // }
 window.addEventListener("wheel", function () {
-  // console.log(window.scrollY)
-  if (this.window.scrollY === 570.7601928710938) {
+  let scrollHeight = this.window.scrollY;
+  // console.log(scrollHeight)
+  let windowHeight = this.window.innerHeight;
+  // console.log(windowHeight)
+  let docTotalHeight = this.document.body.offsetHeight;
+  // console.log(docTotalHeight)
+  if (scrollHeight + windowHeight > docTotalHeight) {
     root1.remove();
+    // this.alert("is bottom")
   }
 })
 
+
+let stop = 0;
+
+
+
+// let current = 0;
 root2.addEventListener("wheel", (event) => {
-  if (event.wheelDelta > 0) {
+
+  if (event.wheelDelta <0 && stop===0) {
     zoomInMy();
-    current=1
-  } else if (event.wheelDelta < 0) {
+    stop=1
+  } else if (event.wheelDelta > 0 && stop === 0) {
     zoomOutMy();
+    stop =2;
+  } else if (stop === 1) {
+
   }
 })
 
-
+// ? 3단계가 있는 버튼을 만들고 싶은데( 온<-> 중간<-> 오프 ) 판단식을 2개를 써서 시도함
+// memo 함수를 무효화 시키는 코드? 
+// memo try...catch 라는게 있대 
 
 function zoomInMy() {
-  // current=0  
-  zoomIn(layerArr[0], 4, -100, -30);
-  zoomIn(layerArr[1], 3, -300, -60);
-  zoomIn(layerArr[2], 1.4, -300, -30);
-  zoomIn(layerArr[3], 1.2, -300, -30);
+  zoomIn(layerArr[0], 4, -10, -3);
+  zoomIn(layerArr[1], 2, -20, -6);
+  zoomIn(layerArr[2], 1.3, -30, -3);
+  zoomIn(layerArr[3], 1.2, -30, -3);
 }
 
 function zoomOutMy() {
-  zoomOut(layerArr[0], 4, -100, -30);
-  zoomOut(layerArr[1], 3, -300, -60);
-  zoomOut(layerArr[2], 1.4, -300, -30);
-  zoomOut(layerArr[3], 1.2, -300, -30);
+  zoomOut(layerArr[0], 4, -12, -3);
+  zoomOut(layerArr[1], 2, -20, -6);
+  zoomOut(layerArr[2], 1.3, -30, -3);
+  zoomOut(layerArr[3], 1.2, -30, -3);
 }
+
+
+function zoomInMe() {
+  zoomIn(layerArr[0], 5, 0, 0);
+  zoomIn(layerArr[1], 4, 10, 6);
+  zoomIn(layerArr[2], 2, 30, 0);
+  zoomIn(layerArr[3], 1.5, 20, -3);
+}
+
+
 
 
 // console.dir(wheelValue);
@@ -116,7 +142,7 @@ function zoomIn(layerDiv, ratio, layerDivX, layerDivY) {
     },
     {
       transform: `scale(${ratio}) 
-      translate(${layerDivX}px, ${layerDivY}px )`
+      translate(${layerDivX}%, ${layerDivY}% )`
     }
   ], {
     duration: 2000,
@@ -127,7 +153,7 @@ function zoomIn(layerDiv, ratio, layerDivX, layerDivY) {
 
 function zoomOut(layerDiv, ratio, layerDivX, layerDivY) {
   layerDiv.animate([{
-    transform: `scale(${ratio})  translate(${layerDivX}px, ${layerDivY}px )`
+    transform: `scale(${ratio})  translate(${layerDivX}%, ${layerDivY}% )`
   }, {
     transform: "scale(1)"
   }], {
