@@ -151,67 +151,52 @@ let current = [false, false, false, false];
 //   }
 // }
 
+currentValue = "a";
+
 root2.addEventListener("wheel", (event) => {
   
   // console.log(count)
   
-  if (event.wheelDelta < 0 && current[0] === false) {//줌인 두번째 -> 결과 : I 페이지
-    console.log("zoom in to I")
-    current.splice(0,2,true,false)
-    console.log(current)
-    console.log("I 레이어는 줌인이 "+current[0])
-  } else if (event.wheelDelta > 0 && current[1] === false ) {// 줌아웃 -> 0페이지
-    console.log("zoom out from I")
-    current.splice(0,2,true,false)
-    console.log("I 레이어는 줌인이 "+current[0])
-    console.log(current)
+  if (event.wheelDelta < 0 && currentValue === 'a') {//줌인 두번째 -> 결과 : I 페이지
+    console.log("go to page I ")
+    currentValue = "b"
+  } else if (event.wheelDelta > 0 &&currentValue ==="a" ) {// 줌아웃 -> 0페이지
+    // console.log("zoom out from I")
+    console.log("back to page 0 ")
   } 
   
   
   
-  else if(event.wheelDelta <0 && current[0]===true){ //줌인 두번째 -> 결과 : My 페이지
-    console.log("zoom in to My");
-    console.log("My 레이어는 줌인이 "+current[0])
-    current.splice(0,3,"",false,true)
-    console.log(current)
-  }else if(event.wheelDelta>0&& current[1]===false){ // 줌아웃 두번째-> I 페이지
-    console.log("zoom out from My");
-    current.splice(0,3,false,false,true)
-    console.log("My 레이어는 줌인이 "+current[1])
-    console.log(current)
+  else if(event.wheelDelta <0 && currentValue === "b"){ //줌인 두번째 -> 결과 : My 페이지
+    console.log("go to page My");
+    currentValue = "c"
+  }else if(event.wheelDelta>0&& currentValue==="b"){ // 줌아웃 두번째-> I 페이지
+    console.log("back to page I ");
+    currentValue = "a"
   } 
   
   
   
   
   
-  else if(event.wheelDelta <0 && current[2]===true){ //줌인 세번째 -> 결과 : Me 페이지
-    console.log("zoom in to Me");
-    console.log("Me 레이어는 줌인이 "+current[2])
-    current.splice(0,4,"","",false,true)
-    console.log(current)
-  }else if(event.wheelDelta>0&& current[2]===false){// 줌아웃 세번째 -> My페이지
-    console.log("zoom out from My");
-    console.log("Me 레이어는 줌인이 "+current[2])
-    current.splice(0,4,"",true,true,true)
-    console.log(current)
+  else if(event.wheelDelta <0 && currentValue ==="c"){ //줌인 세번째 -> 결과 : Me 페이지
+    console.log("go to page Me");
+    currentValue ="d"
+  }else if(event.wheelDelta>0&&currentValue ==="c" ){// 줌아웃 세번째 -> My페이지
+    console.log("back to page My");
+    currentValue = "b"
   }
   
   
   
   
   
-  else if(event.wheelDelta <0 && current[3]===true){ //줌인 네번째 -> 결과 : Myself 페이지
-    console.log("zoom in to My");
-    console.log("Myself 레이어는 줌인이 "+current[3])
-    console.log("끝입니다");
-    current.splice(1,4,"","",false)
-    console.log(current)
-  }
-  else if(event.wheelDelta>0 && current[3]===false){// 줌아웃  네번째 -> Me페이지
-    console.log("Me")
-    current.splice(2,1,true)  
-    console.log(current)
+  else if(event.wheelDelta <0 && currentValue ==="d"){ //줌인 네번째 -> 결과 : Myself 페이지
+    console.log("go to page Myself");
+    // currentValue = "c"
+  }else if(event.wheelDelta>0 && currentValue ==="d"){// 줌아웃  네번째 -> Me페이지
+    console.log("back to page Me");
+    currentValue = "c"
   }
 
 })
