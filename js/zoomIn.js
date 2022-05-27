@@ -67,6 +67,23 @@ root2.addEventListener("wheel", (event) => {
   }
 })
 
+container.addEventListener("click",function(){
+  try{
+    if(stop===0){
+      console.log("zoom in")
+      throw stop = 1;
+    }
+  }catch(e){
+    // if(stop===1){
+      console.log("stay")
+      // stop=1
+    // }
+  }
+})
+
+
+
+
 // ? 3단계가 있는 버튼을 만들고 싶은데( 온<-> 중간<-> 오프 ) 판단식을 2개를 써서 시도함
 // memo 함수를 무효화 시키는 코드? 
 // memo try...catch 라는게 있대 
