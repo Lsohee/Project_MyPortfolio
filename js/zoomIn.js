@@ -134,23 +134,21 @@ let My = {
   }
 }
 // 
-let zoomArr = [one, My]
 
 // console.log(zoomArr[0].zoomInI);
-// memo 스위치 역할을 할 배열 생성
-let current = [false, false, false, false];
 // let count ;
 // count=0;
 
 // function countFunc() {
-//   for (let i = 0; i < current.length; i++) {
-//     if (current[i] === true) {
-//       count++;
-//       // return count;
-//     }
-//   }
-// }
-
+  //   for (let i = 0; i < current.length; i++) {
+    //     if (current[i] === true) {
+      //       count++;
+      //       // return count;
+      //     }
+      //   }
+      // }
+      
+      // memo 스위치 역할을 할 핸들러 변수 생성
 currentValue = "a";
 
 root2.addEventListener("wheel", (event) => {
@@ -158,11 +156,14 @@ root2.addEventListener("wheel", (event) => {
   // console.log(count)
   
   if (event.wheelDelta < 0 && currentValue === 'a') {//줌인 두번째 -> 결과 : I 페이지
+    one.zoomInI()
     console.log("go to page I ")
     currentValue = "b"
   } else if (event.wheelDelta > 0 &&currentValue ==="a" ) {// 줌아웃 -> 0페이지
     // console.log("zoom out from I")
     console.log("back to page 0 ")
+    one.zoomOutI()
+    // currentValue = "a"
   } 
   
   
@@ -170,7 +171,9 @@ root2.addEventListener("wheel", (event) => {
   else if(event.wheelDelta <0 && currentValue === "b"){ //줌인 두번째 -> 결과 : My 페이지
     console.log("go to page My");
     currentValue = "c"
+    
   }else if(event.wheelDelta>0&& currentValue==="b"){ // 줌아웃 두번째-> I 페이지
+    // one.zoomOutI()
     console.log("back to page I ");
     currentValue = "a"
   } 
