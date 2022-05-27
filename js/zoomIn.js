@@ -138,54 +138,82 @@ let zoomArr = [one, My]
 
 // console.log(zoomArr[0].zoomInI);
 // memo 스위치 역할을 할 배열 생성
-let current = [false,false,false,false];
-let count = 0;
+let current = [false, false, false, false];
+// let count ;
+// count=0;
 
-function countFunc(){
-  
-for (let i = 0; i < current.length; i++) {
-  if (current[i] === true) {
-    count++;
-    // return count;
-  }
-
-}
-}
-let swi = true;
+// function countFunc() {
+//   for (let i = 0; i < current.length; i++) {
+//     if (current[i] === true) {
+//       count++;
+//       // return count;
+//     }
+//   }
+// }
 
 root2.addEventListener("wheel", (event) => {
-
-// console.log(count)
-
-  if (event.wheelDelta < 0 && count === 0&& swi===true) {
-    zoomArr[count].zoomOutI();
-    console.log(count)
-    swi=false;
-    countFunc();
-  } else if (event.wheelDelta > 0 && count === 0 && swi ===false) {
-    zoomArr[count].zoomInI();
-    console.log(count)
-    swi=true;
-    countFunc();
+  
+  // console.log(count)
+  
+  if (event.wheelDelta < 0 && current[0] === false) {//줌인 두번째 -> 결과 : I 페이지
+    console.log("zoom in to I")
+    current.splice(0,2,true,false)
+    console.log(current)
+    console.log("I 레이어는 줌인이 "+current[0])
+  } else if (event.wheelDelta > 0 && current[1] === false ) {// 줌아웃 -> 0페이지
+    console.log("zoom out from I")
+    current.splice(0,2,true,false)
+    console.log("I 레이어는 줌인이 "+current[0])
+    console.log(current)
+  } 
+  
+  
+  
+  else if(event.wheelDelta <0 && current[0]===true){ //줌인 두번째 -> 결과 : My 페이지
+    console.log("zoom in to My");
+    console.log("My 레이어는 줌인이 "+current[0])
+    current.splice(0,3,"",false,true)
+    console.log(current)
+  }else if(event.wheelDelta>0&& current[1]===false){ // 줌아웃 두번째-> I 페이지
+    console.log("zoom out from My");
+    current.splice(0,3,false,false,true)
+    console.log("My 레이어는 줌인이 "+current[1])
+    console.log(current)
+  } 
+  
+  
+  
+  
+  
+  else if(event.wheelDelta <0 && current[2]===true){ //줌인 세번째 -> 결과 : Me 페이지
+    console.log("zoom in to Me");
+    console.log("Me 레이어는 줌인이 "+current[2])
+    current.splice(0,4,"","",false,true)
+    console.log(current)
+  }else if(event.wheelDelta>0&& current[2]===false){// 줌아웃 세번째 -> My페이지
+    console.log("zoom out from My");
+    console.log("Me 레이어는 줌인이 "+current[2])
+    current.splice(0,4,"",true,true,true)
+    console.log(current)
+  }
+  
+  
+  
+  
+  
+  else if(event.wheelDelta <0 && current[3]===true){ //줌인 네번째 -> 결과 : Myself 페이지
+    console.log("zoom in to My");
+    console.log("Myself 레이어는 줌인이 "+current[3])
+    console.log("끝입니다");
+    current.splice(1,4,"","",false)
+    console.log(current)
+  }
+  else if(event.wheelDelta>0 && current[3]===false){// 줌아웃  네번째 -> Me페이지
+    console.log("Me")
+    current.splice(2,1,true)  
+    console.log(current)
   }
 
-
-  current.splice(0,1,true)
-  
-  
-  
-  if (event.wheelDelta < 0 && count === 1&&swi===false) {
-    zoomArr[count].zoomInMy();
-    swi=true
-countFunc();
-console.log(count)
-  } else if (event.wheelDelta > 0 && count === 1&&swi===false) {
-    zoomArr[count].zoomOutMy();
-countFunc();
-    swi=false
-console.log(count)
-  }
-  
 })
 
 
