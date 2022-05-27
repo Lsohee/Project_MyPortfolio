@@ -10,6 +10,45 @@ const root2 = document.getElementById("root2");
 // console.dir(root2);
 const layerArr = Array.from(root2.children);
 // console.log(Array.isArray(layerArr));
+// ? zoomIn 과 zoomOut 함수를 먼저 선언해 주면 안되나?
+// let zoomIn = function(){};
+// let zoomOut = function(){}; 
+
+// memo 줌인 틀
+zoomIn = function (layerDiv, ratio, layerDivX, layerDivY) {
+
+  // if(current ===0 ){
+  layerDiv.animate([{
+      transform: ""
+    },
+    {
+      transform: `scale(${ratio}) 
+      translate(${layerDivX}%, ${layerDivY}% )`
+    }
+  ], {
+    duration: 2000,
+    fill: "forwards"
+  })
+}
+// }
+
+
+
+
+// memo 줌아웃 틀
+zoomOut = function (layerDiv, ratio, layerDivX, layerDivY) {
+  layerDiv.animate([{
+    transform: ""
+  }, {
+    transform: `scale(${ratio})  translate(${layerDivX}%, ${layerDivY}% )`
+  }], {
+    duration: 2000,
+    fill: "forwards"
+  })
+}
+
+
+
 
 
 /* 
@@ -35,51 +74,28 @@ console.dir(root2);
 // 보니까 이 값은 딱 두가지 종류다 아래로 내리면 음수 위로 올리면 양수 
 // ?그러면 음수일때 줌아웃 앙수일떄 줌인?
 // }
+
+
+// memo 스크롤 다시 올릴때 root1 안나오게 없앰
 window.addEventListener("wheel", function () {
   let scrollHeight = this.window.scrollY;
-  // console.log(scrollHeight)
   let windowHeight = this.window.innerHeight;
-  // console.log(windowHeight)
   let docTotalHeight = this.document.body.offsetHeight;
-  // console.log(docTotalHeight)
   if (scrollHeight + windowHeight > docTotalHeight) {
     root1.remove();
-    // this.alert("is bottom")
   }
 })
 
 
-let stop = 0;
+
 
 
 
 // let current = 0;
-root2.addEventListener("wheel", (event) => {
+// let current = 0;
 
-  if (event.wheelDelta <0 && stop===0) {
-    zoomInMy();
-    stop=1
-  } else if (event.wheelDelta > 0 && stop === 0) {
-    zoomOutMy();
-    stop =2;
-  } else if (stop === 1) {
 
-  }
-})
 
-container.addEventListener("click",function(){
-  try{
-    if(stop===0){
-      console.log("zoom in")
-      throw stop = 1;
-    }
-  }catch(e){
-    // if(stop===1){
-      console.log("stay")
-      // stop=1
-    // }
-  }
-})
 
 
 
@@ -88,29 +104,89 @@ container.addEventListener("click",function(){
 // memo 함수를 무효화 시키는 코드? 
 // memo try...catch 라는게 있대 
 
-function zoomInMy() {
-  zoomIn(layerArr[0], 4, -10, -3);
-  zoomIn(layerArr[1], 2, -20, -6);
-  zoomIn(layerArr[2], 1.3, -30, -3);
-  zoomIn(layerArr[3], 1.2, -30, -3);
+let one = {
+  zoomInI: function () {
+    // console.log("zoomInI")
+    zoomIn(layerArr[0], 4, -10, -3);
+    zoomIn(layerArr[1], 2, -20, -6);
+    zoomIn(layerArr[2], 1.3, -30, -3);
+    zoomIn(layerArr[3], 1.2, -30, -3);
+  },
+  zoomOutI: function () {
+    zoomOut(layerArr[0], 4, -10, -3);
+    zoomOut(layerArr[1], 2, -20, -6);
+    zoomOut(layerArr[2], 1.3, -30, -3);
+    zoomOut(layerArr[3], 1.2, -30, -3);
+  }
 }
-
-function zoomOutMy() {
-  zoomOut(layerArr[0], 4, -12, -3);
-  zoomOut(layerArr[1], 2, -20, -6);
-  zoomOut(layerArr[2], 1.3, -30, -3);
-  zoomOut(layerArr[3], 1.2, -30, -3);
+let My = {
+  zoomInMy: function () {
+    zoomIn(layerArr[0], 5, 0, 0);
+    zoomIn(layerArr[1], 4, 10, 6);
+    zoomIn(layerArr[2], 2, 30, 0);
+    zoomIn(layerArr[3], 1.5, 20, -3);
+  },
+  zoomOutMy: function () {
+    zoomOut(layerArr[0], 5, 0, 0);
+    zoomOut(layerArr[1], 4, 10, 6);
+    zoomOut(layerArr[2], 2, 30, 0);
+    zoomOut(layerArr[3], 1.5, 20, -3);
+  }
 }
+// 
+let zoomArr = [one, My]
 
+// console.log(zoomArr[0].zoomInI);
+// memo 스위치 역할을 할 배열 생성
+let current = [false,false,false,false];
+let count = 0;
 
-function zoomInMe() {
-  zoomIn(layerArr[0], 5, 0, 0);
-  zoomIn(layerArr[1], 4, 10, 6);
-  zoomIn(layerArr[2], 2, 30, 0);
-  zoomIn(layerArr[3], 1.5, 20, -3);
+function countFunc(){
+  
+for (let i = 0; i < current.length; i++) {
+  if (current[i] === true) {
+    count++;
+    // return count;
+  }
+
 }
+}
+let swi = true;
+
+root2.addEventListener("wheel", (event) => {
+
+// console.log(count)
+
+  if (event.wheelDelta < 0 && count === 0&& swi===true) {
+    zoomArr[count].zoomOutI();
+    console.log(count)
+    swi=false;
+    countFunc();
+  } else if (event.wheelDelta > 0 && count === 0 && swi ===false) {
+    zoomArr[count].zoomInI();
+    console.log(count)
+    swi=true;
+    countFunc();
+  }
 
 
+  current.splice(0,1,true)
+  
+  
+  
+  if (event.wheelDelta < 0 && count === 1&&swi===false) {
+    zoomArr[count].zoomInMy();
+    swi=true
+countFunc();
+console.log(count)
+  } else if (event.wheelDelta > 0 && count === 1&&swi===false) {
+    zoomArr[count].zoomOutMy();
+countFunc();
+    swi=false
+console.log(count)
+  }
+  
+})
 
 
 // console.dir(wheelValue);
@@ -133,7 +209,6 @@ function zoomInMe() {
 
 
 
-
 /* 
 todo3:  변수
 1. 움직이는 레이어 div
@@ -147,37 +222,10 @@ todo4: 줌인 함수 설계
 - 원하는 크기가 되었을때 (if문)
 - 멈춘다 (setTimeOut)
 */
-console.dir(layerArr[0].style);
+// console.dir(layerArr[0].style);
 // layerArr[0].style.size = 7;
 // layerArr[0].style.zoom = 1.2;
 
-function zoomIn(layerDiv, ratio, layerDivX, layerDivY) {
-
-  // if(current ===0 ){
-  layerDiv.animate([{
-      transform: "scale(1)"
-    },
-    {
-      transform: `scale(${ratio}) 
-      translate(${layerDivX}%, ${layerDivY}% )`
-    }
-  ], {
-    duration: 2000,
-    fill: "forwards"
-  })
-}
-// }
-
-function zoomOut(layerDiv, ratio, layerDivX, layerDivY) {
-  layerDiv.animate([{
-    transform: `scale(${ratio})  translate(${layerDivX}%, ${layerDivY}% )`
-  }, {
-    transform: "scale(1)"
-  }], {
-    duration: 2000,
-    fill: "forwards"
-  })
-}
 
 
 // todo animate 를 쓰려고 시도해봤으나 막힘
