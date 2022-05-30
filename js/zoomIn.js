@@ -89,25 +89,33 @@ layerDiv.animate([
 A = B
 
 */
-// let testA = 60 
-// let testB = testA+30
-// testA = testB 
-// console.log(testA)
-let zoomIn;
-let zoomOut;
+
+
+
+
+
 
 
 
 // todo 줌인 줌 아웃 틀 새로 짜기
 // memo 줌인 틀
-zoom = function (layerDiv, ratio, layerDivX, layerDivY) {
-  let currentValue =
-    `scale(${ratio})  translate(${layerDivX*widthPercent}, ${layerDivY*heightPercent})`
-  let newValueToIn =
-    `scale(${ratio+2})  translate(${layerDivX*widthPercent+20}, ${layerDivY*heightPercent+20})`
-  let newValueToOut =
-    `scale(${ratio-2})  translate(${layerDivX*widthPercent-20}, ${layerDivY*heightPercent-20})`
-  zoomIn = layerDiv.animate([{
+zoomValue = function (layerDiv, ratio, layerDivX, layerDivY) {
+  let currentValue = `scale(${ratio})  translate(${layerDivX*widthPercent}, ${layerDivY*heightPercent})`
+  let newValueToIn =`scale(${ratio+2})  translate(${layerDivX*widthPercent+20}, ${layerDivY*heightPercent+20})`
+  let newValueToOut = `scale(${ratio-2})  translate(${layerDivX*widthPercent-20}, ${layerDivY*heightPercent-20})`
+
+
+
+  currentValue, newValueToIn, newValueToOut,layerDiv
+  
+  // memo return이 배열일 수 도 있음
+
+  
+  
+  
+  zoomIn = function(layerDiv,currentValue, newValueToIn, newValueToOut){
+    currentValue = newValueToOut
+    layerDiv.animate([{
       transform: currentValue
     },
     {
@@ -117,10 +125,11 @@ zoom = function (layerDiv, ratio, layerDivX, layerDivY) {
     duration: 2000,
     fill: "forwards"
   })
+}
 
-  currentValue = newValueToIn
-
-  zoomOut = layerDiv.animate([{
+zoomOut = function(layerDiv,currentValue, newValueToIn, newValueToOut){ 
+  currentValue = newValueToIn;
+  layerDiv.animate([{
     transform: currentValue
   }, {
     transform: newValueToOut
@@ -128,64 +137,104 @@ zoom = function (layerDiv, ratio, layerDivX, layerDivY) {
     duration: 2000,
     fill: "forwards"
   })
-  currentValue = newValueToOut;
+}
+return [zoomIn,zoomOut]
+
 }
 
 
 
-// let funcbundle = {
-//   zoomInToI : function(){
-//     zoomIn()
-//   }
-
-
-// }
 
 
 
 
+let funcBundle = {
+  zoomInToI: function () {
+  zoom.zoomIn()
+  },
+  zoomOutToZero: function () {
+    
+  },
+  zoomInToMy: function () {
+    zoomIn(layerArr[0], 5, 0, 0);
+    zoomIn(layerArr[1], 4, -10, -3);
+    zoomIn(layerArr[2], 2, -10, 0);
+    zoomIn(layerArr[3], 2, -14, -3);
+  },
+  zoomOutToI: function () {
+    zoomOut(layerArr[0], 3, 0, 0);
+    zoomOut(layerArr[1], 2, -10, -3);
+    zoomOut(layerArr[2], 1, 0, 0);
+    zoomOut(layerArr[3], 1, -5, -3);
+  },
+  zoomOutToMy: function () {
+    zoomOut(layerArr[0], 5, 0, 0);
+    zoomOut(layerArr[1], 4, -10, -3);
+    zoomOut(layerArr[2], 2, -2, 0);
+    zoomOut(layerArr[3], 1.5, 0, -3);
+  },
+  zoomOutToMe: function(){
+    zoomOut(layerArr[0], 15, 0, 0);
+    zoomOut(layerArr[1], 14, -12, -1);
+    zoomOut(layerArr[2], 10, -12, 0);
+    zoomOut(layerArr[3], 3, -10, -3);
+  }, 
+  zoomInToMe: function(){
+    zoomIn(layerArr[0], 10, 0, 0);//나중에 없앨 레이어
+    zoomIn(layerArr[1], 10, -15, -2);
+    zoomIn(layerArr[2], 6, -10, 0);
+    zoomIn(layerArr[3], 3, -10, -3);
+  },
+  zoomInToMyself: function(){
+    zoomIn(layerArr[0], 10, 0, 0);//나중에 없앨 레이어
+    zoomIn(layerArr[1], 12, -20, -2);
+    zoomIn(layerArr[2], 13, -8, 0);
+    zoomIn(layerArr[3], 15, -15, -2);
+  }
+}
 
-
-
-/* 
-todo2: 이벤트 지정
-1. wheel해서 나오는 값을 가져온다
-2. 그 값이 일정 숫자가 되면 (구간을 설정?)
-3. 이벤트 발생
-*/
 // memo 스위치 역할을 할 핸들러 변수 생성
 currentValue = "a";
-let start = function () {
+let start = function(){
 
-  root2.addEventListener("wheel", (event) => {
+root2.addEventListener("wheel", (event) => {
 
-    // console.log(count)
+  // console.log(count)
 
-    if (event.wheelDelta < 0 && currentValue === 'a') { //줌인 두번째 -> 결과 : I 페이지
-      console.log("go to page I ")
-      currentValue = "b"
-    } else if (event.wheelDelta > 0 && currentValue === "a") { // 줌아웃 -> 0페이지
-      console.log("back to page 0 ")
-      // ? 여기 작동 안되는 듯
-    } else if (event.wheelDelta < 0 && currentValue === "b") { //줌인 두번째 -> 결과 : My 페이지
-      console.log("go to page My");
-      currentValue = "c"
-    } else if (event.wheelDelta > 0 && currentValue === "b") { // 줌아웃 두번째-> I 페이지
-      console.log("back to page I ");
-      currentValue = "a"
-    } else if (event.wheelDelta < 0 && currentValue === "c") { //줌인 세번째 -> 결과 : Me 페이지
-      console.log("go to page Me");
-      currentValue = "d"
-    } else if (event.wheelDelta > 0 && currentValue === "c") { // 줌아웃 세번째 -> My페이지
-      console.log("back to page My");
-      currentValue = "b"
-    } else if (event.wheelDelta < 0 && currentValue === "d") { //줌인 네번째 -> 결과 : Myself 페이지
-      console.log("go to page Myself");
-      // currentValue = "c"
-    } else if (event.wheelDelta > 0 && currentValue === "d") { // 줌아웃  네번째 -> Me페이지
-      console.log("back to page Me");
-      currentValue = "c"
-    }
+  if (event.wheelDelta < 0 && currentValue === 'a') { //줌인 두번째 -> 결과 : I 페이지
+    funcBundle.zoomInToI()
+    console.log("go to page I ")
+    currentValue = "b"
+  } else if (event.wheelDelta > 0 && currentValue === "a") { // 줌아웃 -> 0페이지
+    funcBundle.zoomOutToZero()
+    console.log("back to page 0 ")
+    // ? 여기 작동 안되는 듯
+  } else if (event.wheelDelta < 0 && currentValue === "b") { //줌인 두번째 -> 결과 : My 페이지
+    funcBundle.zoomInToMy()
+    console.log("go to page My");
+    currentValue = "c"
+  } else if (event.wheelDelta > 0 && currentValue === "b") { // 줌아웃 두번째-> I 페이지
+    funcBundle.zoomOutToI()
+    console.log("back to page I ");
+    currentValue = "a"
+  } else if (event.wheelDelta < 0 && currentValue === "c") { //줌인 세번째 -> 결과 : Me 페이지
+    funcBundle.zoomInToMe()
+    console.log("go to page Me");
+    currentValue = "d"
+  } else if (event.wheelDelta > 0 && currentValue === "c") { // 줌아웃 세번째 -> My페이지
+    funcBundle.zoomOutToMy();
+    console.log("back to page My");
+    currentValue = "b"
+  } else if (event.wheelDelta < 0 && currentValue === "d") { //줌인 네번째 -> 결과 : Myself 페이지
+    funcBundle.zoomInToMyself()
+    console.log("go to page Myself");
+    // currentValue = "c"
+  } else if (event.wheelDelta > 0 && currentValue === "d") { // 줌아웃  네번째 -> Me페이지
+    funcBundle.zoomOutToMe()
+    console.log("back to page Me");
+    currentValue = "c"
+  }
 
-  })
+})
 }
+
