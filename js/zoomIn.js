@@ -29,24 +29,14 @@ window.addEventListener("wheel", function () {
   let docTotalHeight = this.document.body.offsetHeight;
   if (scrollHeight + windowHeight > docTotalHeight) {
     root1.remove();
-    // start()
   }
 })
 
 
 
-
-
-
-
-
-
-
-
-
 function start(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler2, handler3, callback) {
-  console.log(layerDiv.outerText);
   callback(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler2, handler3);
+  console.log(layerDiv.outerText);
 }
 
 
@@ -88,36 +78,51 @@ let zoomOut = function (layerDiv, scale, x, y, ratio, changeX, changeY) {
   })
 }
 
-// let currentValue = "a"
+// let currentValue
 
 
 
 function zoom(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler2, handler3) {
   root2.addEventListener("wheel", (event) => {
-currentValue = handler1
-
+    currentValue = handler1
     if (event.wheelDelta < 0 && currentValue === handler1) { //줌인 두번째 -> 결과 : I 페이지
-      console.log(currentValue)
       console.log("go to page Next")
       zoomIn(layerDiv, scale, x, y, ratio, changeX, changeY)
       currentValue = handler2
+      console.log(currentValue)
+      // return currentValue;
+
     } else if (event.wheelDelta > 0 && currentValue === handler1) { //줌인 두번째 -> 결과 : My 페이지
       console.log("go to page last");
       zoomOut(layerDiv, scale, x, y, ratio, changeX, changeY)
       currentValue = handler3
     }
+    console.log(currentValue)
+    return currentValue;
   })
-
+  // return currentValue;
 }
 
-start(layerArr[0], 1, 0, 0, 2, 2, 1, "a", "b", "c", zoom);
-start(layerArr[1], 1, 0, 0, 0.5, 2, 1, "a", "b", "c", zoom);
-start(layerArr[2], 1, 0, 0, 2, 2, 1, "a", "b", "c", zoom);
-start(layerArr[3], 1, 0, 0, 2, 2, 1, "a", "b", "c", zoom);
-// start는 비동기 방식으로 작동함
-//callback함수가 작동을 안함
+// console.log(currentValue)
 
 
-// ! 이벤트의 스위치를 달기 위해 핸들러 변수를 재할당 해준게 다른 호출된 함수에 영향을 미쳤음
-// memo 실제로  핸들러 변수를 이벤트 안에서 재할당 해주니까 정상 작동함
- 
+// memo zero - I 1번이 실행되면 
+function zeroToI() {
+    start(layerArr[0], 1, 0, 0, 2, -50, 1, "a", "b", "c", zoom);
+    start(layerArr[1], 1, 0, 0, 0.5, -60, 1, "a", "b", "c", zoom);
+    start(layerArr[2], 1, 0, 0, 0.2, -20, 1, "a", "b", "c", zoom);
+    start(layerArr[3], 1, 0, 0, 0, 0, 1, "a", "b", "c", zoom);
+}
+
+
+
+// memo I - My 2번이 실행되게
+function IToMy() {
+    start(layerArr[0], 1, 0, 0, 3, -50, 1, "b", "d", "e", zoom);
+  start(layerArr[1], 1, 0, 0, 1, -60, 1, "b", "d", "e", zoom);
+  start(layerArr[2], 1, 0, 0, 1.2, -20, 1, "b", "d", "e", zoom);
+  start(layerArr[3], 1, 0, 0, 0, 0, 1, "b", "d", "e", zoom);
+}
+
+// ? 이번에는 비동기식으로 처리된 함수를 묶어서 동기식으로 바꾸고 싶음
+// 호출해야 작동함
