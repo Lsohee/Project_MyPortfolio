@@ -34,12 +34,18 @@ myPromise.then((currentIndex) => {
   if (currentIndex > 0) {
     setTimeout(() => {
       console.log(pageNation[currentIndex]);
-      currentIndex ++
+      // currentIndex ++
+      nextFunc
     }, 1000)
   }
-  return "이것은 첫번째 then의 리턴입니다"; // 이 함수의 객체 .then에서 받는 매개변수의 인자는 이 함수의 리턴 
+  return  currentIndex+1; // 이 함수의 객체 .then에서 받는 매개변수의 인자는 이 함수의 리턴 
 }).then((currentIndex) => {
-  console.log(currentIndex)
+  if (currentIndex > 1) {
+    setTimeout(() => {
+      console.log(pageNation[currentIndex]);
+    }, 2000)
+  }
+  // console.log(currentIndex)
   return currentIndex + 1
 }).then((currentIndex) => {
   if (currentIndex > 2) {
