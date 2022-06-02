@@ -45,6 +45,33 @@ function start(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler
 
 
 
+//2. 2번으로 호출하고 싶은 내용을 담은 함수 만들기 (1번을 인수로 씀)
+function make(func1,func2){
+console.log("func1의 작동이 시작됩니다")
+func1()
+console.log("func1의 작동이 끝났습니다")
+console.log("func2의 작동이 시작됩니다")
+func2()
+console.log("func2의 작동이 끝났습니다")
+}
+
+
+//3. 2의 함수에 1의 함수 호출을 인자로 써서 호출 
+make(zeroToI,IToMy)
+
+// IToMy(zeroToI());
+
+
+//4. 1번 다음 2번을 내놓는 기능
+//5. 이렇게 하면 함수의 순서가 바뀌어도 1의 함수가 먼저 나옴(동기방식으로 처리된건가?)
+
+// ? 동기적으로 호출하는데 성공 근데 왜 단계적으로 작동을 안하지?
+// ? 함수 설계를 단계적으로 작동하지 못하는 방식으로 만들었나?
+
+
+
+
+
 
 
 
@@ -105,7 +132,7 @@ function zoom(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler2
 
 // console.log(currentValue)
 
-
+//1-1. 1번으로 호출하고 싶은 함수 만들기(안에 들어갈 예정)
 // memo zero - I 1번이 실행되면 
 function zeroToI() {
     start(layerArr[0], 1, 0, 0, 2, -50, 1, "a", "b", "c", zoom);
@@ -114,11 +141,11 @@ function zeroToI() {
     start(layerArr[3], 1, 0, 0, 0, 0, 1, "a", "b", "c", zoom);
 }
 
-
+//1-2. 1번으로 호출하고 싶은 함수 만들기(안에 들어갈 예정)
 
 // memo I - My 2번이 실행되게
 function IToMy() {
-    start(layerArr[0], 1, 0, 0, 3, -50, 1, "b", "d", "e", zoom);
+  start(layerArr[0], 1, 0, 0, 3, -50, 1, "b", "d", "e", zoom);
   start(layerArr[1], 1, 0, 0, 1, -60, 1, "b", "d", "e", zoom);
   start(layerArr[2], 1, 0, 0, 1.2, -20, 1, "b", "d", "e", zoom);
   start(layerArr[3], 1, 0, 0, 0, 0, 1, "b", "d", "e", zoom);
