@@ -12,18 +12,48 @@ let myPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
     console.log(pageNation[pageNationIndex]);
     pageNationIndex++;
-    // console.log(pageNationIndex)
     resolve(pageNationIndex)
   }, 1000)
 });
 
 
+
+// 원래의 코드와 같은 기능을 함
+// --> 그러나 원래의 코드와 같은 방식으로 작동하지는 않는 상태 : 억지로 시간을 늘려줘야함
+// ? 어떻게 해야 then을 이용해서 동기식 처리를 할 수 있을까?
+
+// 반복되는 코드를 반복문으로 처리할 수 는 없을까?
+
+
+
+
+
+
+
 myPromise.then((currentIndex) => {
-  if(currentIndex > 0){
+  if (currentIndex > 0) {
     setTimeout(() => {
       console.log(pageNation[currentIndex]);
-      console.log(currentIndex)
-  }, 1000)}})
+      currentIndex ++
+    }, 1000)
+  }
+  return "이것은 첫번째 then의 리턴입니다"; // 이 함수의 객체 .then에서 받는 매개변수의 인자는 이 함수의 리턴 
+}).then((currentIndex) => {
+  console.log(currentIndex)
+  return currentIndex + 1
+}).then((currentIndex) => {
+  if (currentIndex > 2) {
+    setTimeout(() => {
+      console.log(pageNation[currentIndex]);
+      console.log("over")
+    }, 3000)
+  }
+})
+
+
+
+
+
 // return currentIndex;
 // }).then((currentIndex)=>{
 //   console.log(currentIndex)
