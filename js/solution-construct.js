@@ -6,12 +6,18 @@ const pageNation = ["A", "B", "C", "D"];
 // todo promise를 써서 비동기를 동기로 
 
 // let pageNationIndex;
+// let i  ;
 let pageNationIndex = 0;
+let i =0 ;
+
 
 let myPromise = new Promise((resolve) => {
   setTimeout(() => {
     console.log(pageNation[pageNationIndex]);
     pageNationIndex++;
+    // i++
+    // console.log(pageNationIndex)
+    // console.log(i)
     resolve(pageNationIndex)
   }, 1000)
 });
@@ -22,45 +28,61 @@ let myPromise = new Promise((resolve) => {
 // --> 그러나 원래의 코드와 같은 방식으로 작동하지는 않는 상태 : 억지로 시간을 늘려줘야함
 // ? 어떻게 해야 then을 이용해서 동기식 처리를 할 수 있을까?
 
-// 반복되는 코드를 반복문으로 처리할 수 는 없을까?
-function repeatfunc(currentIndex){
+
+
+
+
+i =0
+function repeatFunc(currentIndex) {
   return new Promise((resolve) => {
-    // for(let i = 0; i<pageNation.length; i++ ){
-      // if (currentIndex > i) {
-        setTimeout(() => {
-          console.log(pageNation[currentIndex]);
-          currentIndex++;
-          resolve(currentIndex) // undefined 
-        }, 1000)
-    }
-)} 
-// )}
-// )}
-
-
-myPromise.then((currentIndex) => {
-  if(currentIndex>0){
-
-    repeatfunc(currentIndex)
-  }
-  }).then((currentIndex) => {
-    if(currentIndex >1){
-
-      repeatfunc(currentIndex)
-    }
-    })
-    // }
-  .then((currentIndex) => {
-    if (currentIndex > 2) {
-      new Promise((resolve) => {
-        setTimeout(() => {
-          console.log(pageNation[currentIndex]);
-          currentIndex++;
-          resolve(currentIndex)
-        }, 1000)
-      })
+    if (currentIndex > i) {
+      setTimeout(() => {
+        console.log(pageNation[currentIndex]);
+        currentIndex++;
+        // console.log(currentIndex)
+        i+=1
+        // console.log(i) // 1
+        resolve(currentIndex) 
+      }, 1000)
     }
   })
+}
+
+
+
+
+
+
+// 반복되는 코드를 반복문으로 처리할 수 는 없을까?
+// function repeatfunc(currentIndex,i){
+//   return new Promise((resolve) => {
+//       if (currentIndex > i) {
+//         setTimeout(() => {
+//           console.log(pageNation[currentIndex]);
+//           currentIndex++;
+//           // i++
+//           // console.log(i)
+//           resolve(currentIndex) // undefined 
+//         }, 1000)
+//     }}
+// )} 
+// // )}
+// )}
+
+
+myPromise.then((currentIndex)=>{
+  return repeatFunc(currentIndex)
+  // return
+  // console.log(i) //undefined 
+  // console.log(currentIndex) //1
+}).then((currentIndex)=>{
+  return repeatFunc(currentIndex)
+  // i=1
+
+}).then((currentIndex)=>{
+  repeatFunc(currentIndex)
+// console.log("over")
+})
 
 
 
