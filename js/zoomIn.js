@@ -31,7 +31,7 @@ window.addEventListener("wheel", function () {
   // console.log(scrollHeight)
   if (scrollHeight + windowHeight > docTotalHeight) {
     root1.remove();
-    make(zeroToI, IToMe)
+    make
   }
 })
 
@@ -56,20 +56,37 @@ function start(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler
 }
 
 
+//  promise 함수 작동에 성공했을시 -> resolve를 실행
+//  promise 함수 작동에 실패했을시 -> reject를 실행
+//  내 맘대로 함수 작동여부를 조절할 수 있으면 그때 그때 실행 할 함수를 변경하는 것도 가능하겠네
 
-
-
-
+// 비동기를 동기로 --> setTimeout() 을 순차적으로  
+// 동기를 비동기로 --> 일반 함수를 콜백함수로 동시에 작동하게  
+// 내가 하고 싶은거 비동기의 함수 묶음을 동기로?
 
 //2. 2번으로 호출하고 싶은 내용을 담은 함수 만들기 (1번을 인수로 씀)
-function make(func1, func2) {
-  console.log("func1의 작동이 시작됩니다")
-  func1()
-  console.log("func1의 작동이 끝났습니다")
-  console.log("func2의 작동이 시작됩니다")
-  func2()
-  console.log("func2의 작동이 끝났습니다")
-}
+let test1 = new Promise((resolve,reject) => {
+  zeroToI() //이 함수가
+  resolve("func1의 작동이 끝났습니다") // 성공시 이 함수가 호출(인자 하나만 들어갈 수 있음)
+  reject("func2의 작동이 끝나지 않았습니다") //실패시 이 함수가 호출 (인자 하나만 들어 갈 수 있음)
+}).then(function(result){//promise의 객체 then은 매개 변수가 두개인데
+  console.log("지금은"+result)//성공시 호출될 함수 하나
+}, function(error){
+  console.log("그런데"+error)//실패시 호출될 함수
+})
+// 성공시만 호출하고 싶으면 매개변수 하나만 쓰면 됨 
+
+let test2 = new Promise((resolve,reject) => {
+  zeroToI() //이거 완료시
+  reject("func2의 작동이 끝나지 않았습니다") //이건 무시
+  resolve("func1의 작동이 끝났습니다") // 이게 호출
+}).then(function(result){
+  console.log("지금은"+result)//호출
+}, function(error){
+  console.log("그런데"+error)//무시
+})
+
+
 
 
 //3. 2의 함수에 1의 함수 호출을 인자로 써서 호출 
@@ -173,7 +190,6 @@ function zoom(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler2
 // memo zero - I 1번이 실행되면 
 function zeroToI() {
   start(layerArr[0], 1, 0, 0, 2, -50, 1, "a", "b", "c", zoom);
-  
   start(layerArr[1], 1, 0, 0, 0.5, -60, 1, "a", "b", "c", zoom);
   start(layerArr[2], 1, 0, 0, 0.2, -20, 1, "a", "b", "c", zoom);
   start(layerArr[3], 1, 0, 0, 0, 0, 1, "a", "b", "c", zoom);
