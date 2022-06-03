@@ -23,35 +23,33 @@ let myPromise = new Promise((resolve) => {
 // ? 어떻게 해야 then을 이용해서 동기식 처리를 할 수 있을까?
 
 // 반복되는 코드를 반복문으로 처리할 수 는 없을까?
-
-
-
-
-// return  currentIndex+1
+function repeatfunc(currentIndex){
+  return new Promise((resolve) => {
+    // for(let i = 0; i<pageNation.length; i++ ){
+      // if (currentIndex > i) {
+        setTimeout(() => {
+          console.log(pageNation[currentIndex]);
+          currentIndex++;
+          resolve(currentIndex) // undefined 
+        }, 1000)
+    }
+)} 
+// )}
+// )}
 
 
 myPromise.then((currentIndex) => {
-  return new Promise((resolve) => {
-      if (currentIndex > 0) {
-        setTimeout(() => {
-          console.log(pageNation[currentIndex]);
-          currentIndex++;
-          resolve(currentIndex) // undefined 
-        }, 1000)
-      }
-    })
+  if(currentIndex>0){
+
+    repeatfunc(currentIndex)
+  }
   }).then((currentIndex) => {
-    return new Promise((resolve) => {
-      if (currentIndex > 1) {
-        setTimeout(() => {
-          console.log(pageNation[currentIndex]);
-          currentIndex++;
-          resolve(currentIndex) // undefined 
-        }, 1000)
-      }
+    if(currentIndex >1){
+
+      repeatfunc(currentIndex)
+    }
     })
     // }
-  })
   .then((currentIndex) => {
     if (currentIndex > 2) {
       new Promise((resolve) => {
