@@ -8,7 +8,7 @@ const pageNation = ["A", "B", "C", "D"];
 // let pageNationIndex;
 let pageNationIndex = 0;
 
-let myPromise = new Promise((resolve, reject) => {
+let myPromise = new Promise((resolve) => {
   setTimeout(() => {
     console.log(pageNation[pageNationIndex]);
     pageNationIndex++;
@@ -27,34 +27,42 @@ let myPromise = new Promise((resolve, reject) => {
 
 
 
-
+// return  currentIndex+1
 
 
 myPromise.then((currentIndex) => {
-  if (currentIndex > 0) {
-    setTimeout(() => {
-      console.log(pageNation[currentIndex]);
-      // currentIndex ++
-      nextFunc
-    }, 1000)
-  }
-  return  currentIndex+1; // 이 함수의 객체 .then에서 받는 매개변수의 인자는 이 함수의 리턴 
-}).then((currentIndex) => {
-  if (currentIndex > 1) {
-    setTimeout(() => {
-      console.log(pageNation[currentIndex]);
-    }, 2000)
-  }
-  // console.log(currentIndex)
-  return currentIndex + 1
-}).then((currentIndex) => {
-  if (currentIndex > 2) {
-    setTimeout(() => {
-      console.log(pageNation[currentIndex]);
-      console.log("over")
-    }, 3000)
-  }
-})
+  return new Promise((resolve) => {
+      if (currentIndex > 0) {
+        setTimeout(() => {
+          console.log(pageNation[currentIndex]);
+          currentIndex++;
+          resolve(currentIndex) // undefined 
+        }, 1000)
+      }
+    })
+  }).then((currentIndex) => {
+    return new Promise((resolve) => {
+      if (currentIndex > 1) {
+        setTimeout(() => {
+          console.log(pageNation[currentIndex]);
+          currentIndex++;
+          resolve(currentIndex) // undefined 
+        }, 1000)
+      }
+    })
+    // }
+  })
+  .then((currentIndex) => {
+    if (currentIndex > 2) {
+      new Promise((resolve) => {
+        setTimeout(() => {
+          console.log(pageNation[currentIndex]);
+          currentIndex++;
+          resolve(currentIndex)
+        }, 1000)
+      })
+    }
+  })
 
 
 
