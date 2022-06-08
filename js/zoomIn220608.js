@@ -29,7 +29,7 @@ window.addEventListener("wheel", function () {
 
 
 let zoom = [
-  zoomIn = function (layerDiv, scale, x, y, ratio, changeX, changeY) {
+  function (layerDiv, scale, x, y, ratio, changeX, changeY) {
     layerDiv.animate([{
         transform: `scale(${scale}) 
   translate(${x/currentWidth*100}%, ${y/currentHeight*100}%)`
@@ -42,8 +42,12 @@ let zoom = [
       duration: 2000,
       fill: "forwards"
     })
+    console.log("scale = " +(scale +ratio));
+    console.log("x+changeX = "+(x+changeX))
+    console.log("y+changeY = "+(y+changeY))
+    console.log("----------------")
   },
-  zoomOut = function (layerDiv, scale, x, y, ratio, changeX, changeY) {
+  function (layerDiv, scale, x, y, ratio, changeX, changeY) {
     layerDiv.animate([{
         transform: `scale(${scale+ratio}) 
   translate(${(x+changeX)/currentWidth*100}%, ${(y+changeY)/currentHeight*100}%)`
@@ -82,12 +86,12 @@ function movement() {
       console.log("I에서 My로 이동합니다")
       currentPage.splice(1, 2, false, true)
       console.log(currentPage)
-
+      IToMy()
     } else if (event.wheelDelta < 0 && currentPage[2] === true) {
       console.log("My에서 Me로 이동합니다")
       currentPage.splice(2, 2, false, true)
       console.log(currentPage)
-
+      MyToMe()
     } else if (event.wheelDelta < 0 && currentPage[3] === true) {
       console.log("Me에서 Myself로 이동합니다")
       currentPage.splice(3, 2, false, true)
@@ -101,14 +105,17 @@ function movement() {
       console.log("Me에서 My로 이동합니다")
       currentPage.splice(2, 2, true, false)
       console.log(currentPage)
+      MeToMy()
     } else if (event.wheelDelta > 0 && currentPage[2] === true) {
       console.log("My에서 I로 이동합니다")
       currentPage.splice(1, 2, true, false)
       console.log(currentPage)
+      MyToI()
     } else if (event.wheelDelta > 0 && currentPage[1] === true) {
       console.log("I에서 zero로 이동합니다")
       currentPage.splice(0, 2, true, false)
       console.log(currentPage)
+      IToZero()
     }
   })
 
@@ -118,23 +125,53 @@ function movement() {
 
 
 // memo 움직임 제어를 위한 함수 호출을 레이어와 움직임 종류로 묶는 용도 함수
-// memo zero - I 1번이 실행되면 
-function zeroToI() {
-  //  ? 배열과 객체를 어떻게 이용하면 숫자를 한번만쓸 수 있을 거 같은데
-  zoom[0](layerArr[0], 1, 0, 0, 2, -50, 1);
-  zoom[0](layerArr[1], 1, 0, 0, 0.5, -60, 1);
-  zoom[0](layerArr[2], 1, 0, 0, 0.2, -20, 1);
-  zoom[0](layerArr[3], 1, 0, 0, 0, 0, 1);
-}
-// memo I - My 2번이 실행되게
-function IToMy() {
 
+function zeroToI() {
+  //  ? 배열과 객체를 어떻게 이용하면 숫자를 한번만 쓸 수 있을 거 같은데
+  zoom[0](layerArr[0], 1, 0, 0, 1, -240, -60);
+  zoom[0](layerArr[1], 1, 0, 0, 0.5, -100, -30);
+  zoom[0](layerArr[2], 1, 0, 0, 0.2, -60, -10);
+  zoom[0](layerArr[3], 1, 0, 0, 0.1, -20,-10);
 }
+function IToZero() {
+  zoom[1](layerArr[0], 1, 0, 0, 1, -240, -60);
+  zoom[1](layerArr[1], 1, 0, 0, 0.5, -100, -30);
+  zoom[1](layerArr[2], 1, 0, 0, 0.2, -60, -10);
+  zoom[1](layerArr[3], 1, 0, 0, 0.1, -20, -10);
+}
+
+
+
+
+
+function IToMy() {
+  zoom[0](layerArr[0], 2, -240, -60, 6, 100, -30);
+  zoom[0](layerArr[1], 1.5, -100, -30, 2.8, -150, -40);
+  zoom[0](layerArr[2], 1.2, -60, -10, 1.8, -120, -40);
+  zoom[0](layerArr[3], 1.1, -20, -10, 0.9, -60, -60);
+}
+function MyToI() {
+  zoom[1](layerArr[0], 2, -240, -60, 6, 100, -30);
+  zoom[1](layerArr[1], 1.5, -100, -30, 2.8, -150, -40);
+  zoom[1](layerArr[2], 1.2, -60, -10, 1.8, -120, -40);
+  zoom[1](layerArr[3], 1.1, -20, -10, 0.9, -60, -60);
+}
+
+
+
+
+
 // memo My - Me 3번이 실행되게
 function MyToMe() {
-
+  zoom[0](layerArr[0], 8, -140, -90, 4, 0, 80);
+  zoom[0](layerArr[1], 4.3, -250, -70, 5, -100, 0);
+  zoom[0](layerArr[2], 3, -180, -50, 7, -170, 20);
+  zoom[0](layerArr[3], 2, -80, -70, 3, -270, 20);
 }
 // memo Me - Myself 4번이 실행되게
-function MyToMe() {
-
+function MeToMy() {
+  zoom[1](layerArr[0], 8, -140, -90, 4, 0, 80);
+  zoom[1](layerArr[1], 4.3, -250, -70, 5, -100, 0);
+  zoom[1](layerArr[2], 3, -180, -50, 7, -170, 20);
+  zoom[1](layerArr[3], 2, -80, -70, 3, -270, 20);
 }
