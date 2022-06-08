@@ -17,12 +17,6 @@ console.log(currentHeight)
 
  */
 
-
-// console.log(100/currentWidth)
-// let widthPercent = Math.round(100 currentWidth);
-// let heightPercent = Math.round(100/ currentHeight );
-// console.log(widthPercent)
-
 // memo 스크롤 다시 올릴때 root1 안나오게 없앰
 window.addEventListener("wheel", function () {
   let scrollHeight = this.window.scrollY;
@@ -30,29 +24,42 @@ window.addEventListener("wheel", function () {
   let docTotalHeight = this.document.body.offsetHeight;
   // console.log(scrollHeight)
   if (scrollHeight + windowHeight > docTotalHeight) {
+    movement()
     root1.remove();
-    make
   }
 })
 
+// IToMy()
+// MyToMe()
+// // 만약에 
 
-// root2.addEventListener("wheel",(event)=>{
-//   console.log(event.wheelDelta)
-//   if(event.wheelDelta > 0 ){
-//     console.log("zoom in");
-//   }else if(event.wheelDelta<0){
-//     console.log("zoom out")
-//   }
-// })
+  movementHandler = "zeroToI";
+function movement(){
+
+  root2.addEventListener("wheel",function(){
+  
+      if(movementHandler === "zeroToI"){
+        console.log(movementHandler)
+        
+        zeroToI()
+        movementHandler = "IToMy"
+        console.log(movementHandler)
+      }else if(movementHandler === "IToMy"){
+        IToMy()
+        movementHandler = "MytoMe"
+        console.log(movementHandler)
+      }else if(movementHandler === "MytoMe"){
+        console.log(movementHandler)
+        MyToMe()
+      }
+    }
+  )
+}
 
 
-
-
-
-
-function start(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler2, handler3, callback) {
-  callback(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler2, handler3);
-  console.log(layerDiv.outerText);
+function start(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler2, callback) {
+  callback(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler2);
+  // console.log(layerDiv.outerText);
 }
 
 
@@ -65,26 +72,6 @@ function start(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler
 // 내가 하고 싶은거 비동기의 함수 묶음을 동기로?
 
 //2. 2번으로 호출하고 싶은 내용을 담은 함수 만들기 (1번을 인수로 씀)
-let test1 = new Promise((resolve,reject) => {
-  zeroToI() //이 함수가
-  resolve("func1의 작동이 끝났습니다") // 성공시 이 함수가 호출(인자 하나만 들어갈 수 있음)
-  reject("func2의 작동이 끝나지 않았습니다") //실패시 이 함수가 호출 (인자 하나만 들어 갈 수 있음)
-}).then(function(result){//promise의 객체 then은 매개 변수가 두개인데
-  console.log("지금은"+result)//성공시 호출될 함수 하나
-}, function(error){
-  console.log("그런데"+error)//실패시 호출될 함수
-})
-// 성공시만 호출하고 싶으면 매개변수 하나만 쓰면 됨 
-
-let test2 = new Promise((resolve,reject) => {
-  zeroToI() //이거 완료시
-  reject("func2의 작동이 끝나지 않았습니다") //이건 무시
-  resolve("func1의 작동이 끝났습니다") // 이게 호출
-}).then(function(result){
-  console.log("지금은"+result)//호출
-}, function(error){
-  console.log("그런데"+error)//무시
-})
 
 
 
@@ -158,12 +145,13 @@ let zoomOut = function (layerDiv, scale, x, y, ratio, changeX, changeY) {
     fill: "forwards"
   })
 }
-
+let movementHandler;
 // let currentValue
 
 
 
-function zoom(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler2, handler3) {
+
+function zoom(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler2) {
   let currentValue = handler1
   // currentValue = handler1
   root2.addEventListener("wheel", (event) => {
@@ -172,11 +160,11 @@ function zoom(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler2
       zoomIn(layerDiv, scale, x, y, ratio, changeX, changeY)
       currentValue = handler2
       console.log(currentValue)
-    } else if (event.wheelDelta > 0 && currentValue === handler3) {
+    } else if (event.wheelDelta > 0 && currentValue === handler2) {
       console.log("go to page last");
       zoomOut(layerDiv, scale, x, y, ratio, changeX, changeY)
       currentValue = handler2
-      console.log(currentValue)
+      console.log(currentValue) 
     }
     // return currentValue;
   })
@@ -189,21 +177,32 @@ function zoom(layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler2
 //1-1. 1번으로 호출하고 싶은 함수 만들기(안에 들어갈 예정)
 // memo zero - I 1번이 실행되면 
 function zeroToI() {
-  start(layerArr[0], 1, 0, 0, 2, -50, 1, "a", "b", "c", zoom);
-  start(layerArr[1], 1, 0, 0, 0.5, -60, 1, "a", "b", "c", zoom);
-  start(layerArr[2], 1, 0, 0, 0.2, -20, 1, "a", "b", "c", zoom);
-  start(layerArr[3], 1, 0, 0, 0, 0, 1, "a", "b", "c", zoom);
+  start(layerArr[0], 1, 0, 0, 2, -50, 1, "a", "b",  zoom);
+  start(layerArr[1], 1, 0, 0, 0.5, -60, 1, "a", "b", zoom);
+  start(layerArr[2], 1, 0, 0, 0.2, -20, 1, "a", "b", zoom);
+  start(layerArr[3], 1, 0, 0, 0, 0, 1, "a", "b",  zoom);
   // console.log(currentValue)
+  // console.log("zeroToI")
 }
 
 //1-2. 1번으로 호출하고 싶은 함수 만들기(안에 들어갈 예정)
 
 // memo I - My 2번이 실행되게
-function IToMe() {
-  start(layerArr[0], 1, 0, 0, 3, -50, 1, "b", "c", "d", zoom);
-  start(layerArr[1], 1, 0, 0, 1, -60, 1, "b", "c", "d", zoom);
-  start(layerArr[2], 1, 0, 0, 1.2, -20, 1, "b", "c", "d", zoom);
-  start(layerArr[3], 1, 0, 0, 0, 0, 1, "b", "c", "d", zoom);
+function IToMy() {
+  start(layerArr[0], 1, 0, 0, 3, -60, 1, "b", "c",  zoom);
+  start(layerArr[1], 1, 0, 0, 1, -70, 1, "b", "c",  zoom);
+  start(layerArr[2], 1, 0, 0, 1.2, -30, 1, "b", "c", zoom);
+  start(layerArr[3], 1, 0, 0, 0.2, 0, 1, "b", "c",  zoom);
+  // console.log("IToMy")
+}
+// layerDiv, scale, x, y, ratio, changeX, changeY, handler1, handler2
+function MyToMe() {
+  start(layerArr[0], 1, 0, 0, 4, -50, 1, "c", "d",  zoom);
+  start(layerArr[1], 1, 0, 0, 0.7, -60, 1, "c", "d", zoom);
+  start(layerArr[2], 1, 0, 0, 0.5, -20, 1, "c", "d", zoom);
+  start(layerArr[3], 1, 0, 0, 0,3, 0, 1, "c", "d",  zoom);
+  // console.log("MyToMe")
+  // console.log(currentValue)
 }
 
 // ? 이번에는 비동기식으로 처리된 함수를 묶어서 동기식으로 바꾸고 싶음
