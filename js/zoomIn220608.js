@@ -6,7 +6,7 @@ const layerArr = Array.from(root2.children);
 
 
 let currentPage = [true, false, false, false, false]
-
+let zoomArr,startSplice
 
 // memo 스크롤 다시 올릴때 root1 안나오게 없앰
 
@@ -29,32 +29,32 @@ window.addEventListener("wheel", function () {
 
 
 let zoom = [
-  function (layerDiv, scale, x, y, ratio, changeX, changeY) {
-    layerDiv.animate([{
-        transform: `scale(${scale}) 
-  translate(${x/currentWidth*100}%, ${y/currentHeight*100}%)`
+  function (movementValueObject) {
+    layerArr[movementValueObject.layerDiv].animate([{
+        transform: `scale(${movementValueObject.scale}) 
+  translate(${(movementValueObject.x)/(currentWidth)*100}%, ${(movementValueObject.y)/(currentHeight)*100}%)`
       },
       {
-        transform: `scale(${scale +ratio}) 
-    translate(${(x+changeX)/currentWidth*100}%,${(y+changeY)/currentHeight*100}%)`
+        transform: `scale(${movementValueObject.ratio}) 
+    translate(${(movementValueObject.changeX)/currentWidth*100}%,${(movementValueObject.changeY)/currentHeight*100}%)`
       }
     ], {
       duration: 2000,
       fill: "forwards"
     })
-    console.log("scale = " +(scale +ratio));
-    console.log("x+changeX = "+(x+changeX))
-    console.log("y+changeY = "+(y+changeY))
+    console.log("scale = " +(movementValueObject.ratio));
+    console.log("x+changeX = "+(movementValueObject.changeX))
+    console.log("y+changeY = "+(movementValueObject.changeY))
     console.log("----------------")
   },
-  function (layerDiv, scale, x, y, ratio, changeX, changeY) {
-    layerDiv.animate([{
-        transform: `scale(${scale+ratio}) 
-  translate(${(x+changeX)/currentWidth*100}%, ${(y+changeY)/currentHeight*100}%)`
+  function (movementValueObject) {
+    layerArr[movementValueObject.layerDiv].animate([{
+        transform: `scale(${movementValueObject.ratio}) 
+  translate(${(movementValueObject.changeX)/currentWidth*100}%, ${(movementValueObject.changeY)/currentHeight*100}%)`
       },
       {
-        transform: `scale(${scale}) 
-  translate(${(x)/currentWidth*100}%,${(y)/currentHeight*100}%)`
+        transform: `scale(${movementValueObject.scale}) 
+  translate(${(movementValueObject.x)/currentWidth*100}%,${(movementValueObject.y)/currentHeight*100}%)`
       }
     ], {
       duration: 2000,
@@ -79,9 +79,8 @@ function movement() {
 
     } else if (event.wheelDelta < 0 && currentPage[0] === true) {
       console.log("zero에서 I로 이동합니다")
-      currentPage.splice(0, 2, false, true)
       console.log(currentPage)
-      zeroToI()
+      zeroToI(0,0)
     } else if (event.wheelDelta < 0 && currentPage[1] === true) {
       console.log("I에서 My로 이동합니다")
       currentPage.splice(1, 2, false, true)
@@ -113,9 +112,8 @@ function movement() {
       MyToI()
     } else if (event.wheelDelta > 0 && currentPage[1] === true) {
       console.log("I에서 zero로 이동합니다")
-      currentPage.splice(0, 2, true, false)
+      zeroToI(1,0)
       console.log(currentPage)
-      IToZero()
     }
   })
 
@@ -126,52 +124,104 @@ function movement() {
 
 // memo 움직임 제어를 위한 함수 호출을 레이어와 움직임 종류로 묶는 용도 함수
 
-function zeroToI() {
-  //  ? 배열과 객체를 어떻게 이용하면 숫자를 한번만 쓸 수 있을 거 같은데
-  zoom[0](layerArr[0], 1, 0, 0, 1, -240, -60);
-  zoom[0](layerArr[1], 1, 0, 0, 0.5, -100, -30);
-  zoom[0](layerArr[2], 1, 0, 0, 0.2, -60, -10);
-  zoom[0](layerArr[3], 1, 0, 0, 0.1, -20,-10);
+//  ? 배열과 객체를 어떻게 이용하면 숫자를 한번만 쓸 수 있을 거 같은데
+
+// ^ zero와 I 사이의 움직임
+
+
+
+function zeroToI(zoomArr,startSplice) {
+  zoom[zoomArr]({
+    layerDiv : 0,
+    scale : 1,
+    x : 0,
+    y : 0,
+    ratio : 2,
+    changeX : -140,
+    changeY : -60
+  }
+  );
+  zoom[zoomArr]({
+    layerDiv : 1,
+    scale : 1,
+    x : 0,
+    y : 0,
+    ratio : 1.5,
+    changeX : -100,
+    changeY : -30
+  }
+  );
+  zoom[zoomArr]({
+    layerDiv : 2,
+    scale : 1,
+    x : 0,
+    y : 0,
+    ratio : 1.2,
+    changeX : -60,
+    changeY : -10
+  }
+  );
+  zoom[zoomArr]({
+    layerDiv : 3,
+    scale : 1,
+    x : 0,
+    y : 0,
+    ratio : 1.1,
+    changeX : -20,
+    changeY : -10
+  }
+  );
+  if(zoomArr === 0){
+    currentPage.splice(startSplice, 2, false, true)
+  }else if (zoomArr ===1){
+    currentPage.splice(startSplice, 2,  true,false)
+  }
 }
-function IToZero() {
-  zoom[1](layerArr[0], 1, 0, 0, 1, -240, -60);
-  zoom[1](layerArr[1], 1, 0, 0, 0.5, -100, -30);
-  zoom[1](layerArr[2], 1, 0, 0, 0.2, -60, -10);
-  zoom[1](layerArr[3], 1, 0, 0, 0.1, -20, -10);
-}
 
-
-
-
-
-function IToMy() {
-  zoom[0](layerArr[0], 2, -240, -60, 6, 100, -30);
-  zoom[0](layerArr[1], 1.5, -100, -30, 2.8, -150, -40);
-  zoom[0](layerArr[2], 1.2, -60, -10, 1.8, -120, -40);
-  zoom[0](layerArr[3], 1.1, -20, -10, 0.9, -60, -60);
-}
-function MyToI() {
-  zoom[1](layerArr[0], 2, -240, -60, 6, 100, -30);
-  zoom[1](layerArr[1], 1.5, -100, -30, 2.8, -150, -40);
-  zoom[1](layerArr[2], 1.2, -60, -10, 1.8, -120, -40);
-  zoom[1](layerArr[3], 1.1, -20, -10, 0.9, -60, -60);
-}
-
-
-
-
-
-// memo My - Me 3번이 실행되게
-function MyToMe() {
-  zoom[0](layerArr[0], 8, -140, -90, 4, 0, 80);
-  zoom[0](layerArr[1], 4.3, -250, -70, 5, -100, 0);
-  zoom[0](layerArr[2], 3, -180, -50, 7, -170, 20);
-  zoom[0](layerArr[3], 2, -80, -70, 3, -270, 20);
-}
-// memo Me - Myself 4번이 실행되게
-function MeToMy() {
-  zoom[1](layerArr[0], 8, -140, -90, 4, 0, 80);
-  zoom[1](layerArr[1], 4.3, -250, -70, 5, -100, 0);
-  zoom[1](layerArr[2], 3, -180, -50, 7, -170, 20);
-  zoom[1](layerArr[3], 2, -80, -70, 3, -270, 20);
+function IToMy(zoomArr,startSplice) {
+  zoom[zoomArr]({
+    layerDiv : 0,
+    scale : 2,
+    x : -240,
+    y: -60,
+    ratio : 4,
+    changeX : 
+    changeY
+   }
+  );
+  // zoom[zoomArr]({
+  //   layerDiv : 1,
+  //   scale : 1,
+  //   x : -100,
+  //   y : -30,
+  //   ratio : ,
+  //   changeX : ,
+  //   changeY : 
+  // }
+  // );
+  // zoom[zoomArr]({
+  //   layerDiv : 2,
+  //   scale : 1,
+  //   x : 0,
+  //   y : 0,
+  //   ratio : 1.2,
+  //   changeX : -60,
+  //   changeY : -10
+  // }
+  // );
+  // zoom[zoomArr]({
+  //   layerDiv : 3,
+  //   scale : 1,
+  //   x : 0,
+  //   y : 0,
+  //   ratio : 1.1,
+  //   changeX : -20,
+  //   changeY : -10
+  // }
+  // );
+  if(zoomArr === 0){
+    currentPage.splice(startSplice, 2, false, true)
+  }else if (zoomArr ===1){
+    currentPage.splice(startSplice, 2,  true,false)
+  }
 }
