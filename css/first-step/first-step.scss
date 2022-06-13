@@ -11,11 +11,10 @@
   align-items: $align;
 }
 
-@mixin section-check ($width:100%, $hieght:100%, $color:black, $bgc:#ccc) {
+@mixin section-check ($width:100%, $hieght:100%, $background-color:#5cb9b160) {
   width: $width;
   height: $hieght;
-  border: 1px solid $color;
-  background-color: $bgc;
+  background-color: $background-color;
 }
 
 #root1 {
@@ -23,7 +22,7 @@
   @include display-flex($justify: center);
 
   &>div {
-    @include section-check(50%, 60%, 0);
+    @include section-check(50%, 60%);
     @include display-flex($justify: space-around);
     position: relative;
     left: 10%;
@@ -43,14 +42,23 @@
   }
 }
 
+
+
+
+
+
+
+
+
+
+
 #root2 {
   @include section-check(100vw, 100vh);
-  // @include display-flex($flexDirection:row);
   position: relative;
   overflow: hidden;
 
   &>div {
-    @include section-check(100%, 100%, black, rgba(34, 51, 0, 0))
+    @include section-check(100%, 100%)
   }
 
   &>div:nth-child(1) {
@@ -65,25 +73,54 @@
       font-size: 20px;
     }
 
-    &>div:nth-child(2) {
-      @include section-check(20em, 20em, black, rgba(137, 24, 24, 0.624));
+    &>img:nth-child(2) {
+      @include section-check(20em, 20em,#5cb9b100);
       border-radius: 50%;
       position: absolute;
       left: 1000px;
-      top: 300px;
+      top: 200px;
     }
   }
-
+// memo 레이어 2
   &>div:nth-child(2) {
     position: absolute;
     z-index: 4;
 
-    &>div {
-      @include section-check(7em, 7em,black,rgba(85, 236, 21, 0.148));
+    &>img:nth-child(1) {
+      @include section-check(7em, 7em,#5cb9b100);
       border-radius: 50%;
       position: absolute;
       left: 900px;
       top: 400px;
+    }
+
+    &>img:nth-child(2) {
+      @include section-check(3em, 3em,#5cb9b100);
+      border-radius: 50%;
+      position: absolute;
+      left: 1000px;
+      top: 400px;
+    }
+    &>img:nth-child(3) {
+      @include section-check(3em, 3em,#5cb9b100);
+      border-radius: 50%;
+      position: absolute;
+      left: 900px;
+      top: 350px;
+    }
+    &>img:nth-child(4) {
+      @include section-check(3em, 3em,#5cb9b100);
+      border-radius: 50%;
+      position: absolute;
+      left: 1000px;
+      top: 500px;
+    }
+    &>img:nth-child(5) {
+      @include section-check(3em, 3em,#5cb9b100);
+      border-radius: 50%;
+      position: absolute;
+      left: 1070px;
+      top: 430px;
     }
   }
 
@@ -91,25 +128,60 @@
     position: absolute;
     z-index: 3;
 
-    &>div {
-      @include section-check(3em, 3em);
-      border-radius: 50%;
+    &>img:nth-child(1) {
+      @include section-check(fit-content , 3em,#5cb9b100);
+      // border-radius: 50%;
       position: absolute;
       left: 1100px;
       top: 400px;
+    }
+    &>img:nth-child(2) {
+      @include section-check(fit-content , 1.6em,#5cb9b100);
+      // border-radius: 50%;
+      position: absolute;
+      left: 1150px;
+      top: 450px;
     }
   }
 
   &>div:nth-child(4) {
     position: absolute;
     z-index: 2;
-      &>div{
-      @include section-check(1em, 1em);
-      border-radius: 50%;
+      &>img:nth-child(1){
+      @include section-check(1em, 1em,#5cb9b100);
+      // border-radius: 50%;
       position: absolute;
       left: 1080px;
       top: 430px;
   }
+  &>img:nth-child(2){
+    @include section-check(1em, 1em,#5cb9b100);
+    // border-radius: 50%;
+    position: absolute;
+    left: 1000px;
+    top: 430px;
+}
+&>img:nth-child(3){
+  @include section-check(1em, 1em,#5cb9b100);
+  // border-radius: 50%;
+  position: absolute;
+  left: 1050px;
+  top: 430px;
+}
+&>img:nth-child(4){
+  @include section-check(1em, 1em,#5cb9b100);
+  // border-radius: 50%;
+  position: absolute;
+  left: 1040px;
+  top: 430px;
+}
+&>img:nth-child(5){
+  @include section-check(1em, 1em,#5cb9b100);
+  // border-radius: 50%;
+  position: absolute;
+  left: 1080px;
+  top: 430px;
+}
 }
 
 }

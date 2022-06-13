@@ -5,7 +5,6 @@ const layerArr = Array.from(root2.children);
 
 
 
-let currentPage = [true, false, false, false, false]
 let zoomArr,startSplice
 
 // memo 스크롤 다시 올릴때 root1 안나오게 없앰
@@ -31,36 +30,36 @@ window.addEventListener("wheel", function () {
 let zoom = [
   function (movementValueObject) {
     layerArr[movementValueObject.layerDiv].animate([{
-        transform: `scale(${movementValueObject.scale}) 
-  translate(${(movementValueObject.x)/(currentWidth)*100}%, ${(movementValueObject.y)/(currentHeight)*100}%)`
-      },
-      {
-        transform: `scale(${movementValueObject.ratio}) 
-    translate(${(movementValueObject.changeX)/currentWidth*100}%,${(movementValueObject.changeY)/currentHeight*100}%)`
-      }
-    ], {
-      duration: 2000,
-      fill: "forwards"
-    })
-    console.log("scale = " +(movementValueObject.ratio));
-    console.log("x+changeX = "+(movementValueObject.changeX))
-    console.log("y+changeY = "+(movementValueObject.changeY))
-    console.log("----------------")
+      transform: `scale(${movementValueObject.scale}) 
+      translate(${(movementValueObject.x)/(currentWidth)*100}%, ${(movementValueObject.y)/(currentHeight)*100}%)`
+    },
+    {
+      transform: `scale(${movementValueObject.ratio}) 
+      translate(${(movementValueObject.changeX)/currentWidth*100}%,${(movementValueObject.changeY)/currentHeight*100}%)`
+    }
+  ], {
+    duration: 2000,
+    fill: "forwards"
+  })
+  console.log("scale = " +(movementValueObject.ratio));
+  console.log("x+changeX = "+(movementValueObject.changeX))
+  console.log("y+changeY = "+(movementValueObject.changeY))
+  console.log("----------------")
+},
+function (movementValueObject) {
+  layerArr[movementValueObject.layerDiv].animate([{
+    transform: `scale(${movementValueObject.ratio}) 
+    translate(${(movementValueObject.changeX)/currentWidth*100}%, ${(movementValueObject.changeY)/currentHeight*100}%)`
   },
-  function (movementValueObject) {
-    layerArr[movementValueObject.layerDiv].animate([{
-        transform: `scale(${movementValueObject.ratio}) 
-  translate(${(movementValueObject.changeX)/currentWidth*100}%, ${(movementValueObject.changeY)/currentHeight*100}%)`
-      },
-      {
-        transform: `scale(${movementValueObject.scale}) 
-  translate(${(movementValueObject.x)/currentWidth*100}%,${(movementValueObject.y)/currentHeight*100}%)`
-      }
-    ], {
-      duration: 2000,
-      fill: "forwards"
-    })
+  {
+    transform: `scale(${movementValueObject.scale}) 
+    translate(${(movementValueObject.x)/currentWidth*100}%,${(movementValueObject.y)/currentHeight*100}%)`
   }
+], {
+  duration: 2000,
+  fill: "forwards"
+})
+}
 
 ]
 
@@ -71,6 +70,7 @@ let zoom = [
 
 
 
+let currentPage = [true, false, false, false, false]
 // memo 줌인 줌아웃 제어 함수
 function movement() {
   root2.addEventListener("wheel", (event) => {
@@ -85,7 +85,7 @@ function movement() {
       console.log("I에서 My로 이동합니다")
       currentPage.splice(1, 2, false, true)
       console.log(currentPage)
-      IToMy()
+      IToMy(0,1)
     } else if (event.wheelDelta < 0 && currentPage[2] === true) {
       console.log("My에서 Me로 이동합니다")
       currentPage.splice(2, 2, false, true)
@@ -109,7 +109,7 @@ function movement() {
       console.log("My에서 I로 이동합니다")
       currentPage.splice(1, 2, true, false)
       console.log(currentPage)
-      MyToI()
+      IToMy(1,1)
     } else if (event.wheelDelta > 0 && currentPage[1] === true) {
       console.log("I에서 zero로 이동합니다")
       zeroToI(1,0)
@@ -182,33 +182,33 @@ function IToMy(zoomArr,startSplice) {
   zoom[zoomArr]({
     layerDiv : 0,
     scale : 2,
-    x : -240,
+    x : -140,
     y: -60,
-    ratio : 4,
-    changeX : 
-    changeY
+    ratio : 5,
+    changeX :0, 
+    changeY:-40
    }
   );
-  // zoom[zoomArr]({
-  //   layerDiv : 1,
-  //   scale : 1,
-  //   x : -100,
-  //   y : -30,
-  //   ratio : ,
-  //   changeX : ,
-  //   changeY : 
-  // }
-  // );
-  // zoom[zoomArr]({
-  //   layerDiv : 2,
-  //   scale : 1,
-  //   x : 0,
-  //   y : 0,
-  //   ratio : 1.2,
-  //   changeX : -60,
-  //   changeY : -10
-  // }
-  // );
+  zoom[zoomArr]({
+    layerDiv : 1,
+    scale : 1.5,
+    x : -100,
+    y : -30,
+    ratio : 2,
+    changeX : -200,
+    changeY:-50
+  }
+  );
+  zoom[zoomArr]({
+    layerDiv : 2,
+    scale : 1.2,
+    x : -60,
+    y : -10,
+    ratio : 1.5,
+    changeX : -100,
+    changeY : -20
+  }
+  );
   // zoom[zoomArr]({
   //   layerDiv : 3,
   //   scale : 1,
