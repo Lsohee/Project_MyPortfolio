@@ -11,7 +11,7 @@
   align-items: $align;
 }
 
-@mixin section-check ($width:100%, $hieght:100%, $background-color:#5cb9b160) {
+@mixin section-check ($width:100%, $hieght:100%, $background-color:#8fcbe410) {
   width: $width;
   height: $hieght;
   background-color: $background-color;
@@ -53,7 +53,8 @@
 
 
 #root2 {
-  @include section-check(100vw, 100vh);
+  @include section-check(100vw, 100vh,#82C6AF);
+
   position: relative;
   overflow: hidden;
 
@@ -64,7 +65,7 @@
   &>div:nth-child(1) {
     position: absolute;
     z-index: 5;
-
+    backdrop-filter: blur(1px);
     &>div:nth-child(1) {
       @include section-check(400px, fit-content);
       position: absolute;
@@ -74,52 +75,57 @@
     }
 
     &>img:nth-child(2) {
-      @include section-check(20em, 20em,#5cb9b100);
+      @include section-check(20em, 20em, #5cb9b100);
       border-radius: 50%;
       position: absolute;
       left: 1000px;
-      top: 200px;
+      top: 250px;
     }
   }
-// memo 레이어 2
+
+  // memo 레이어 2
   &>div:nth-child(2) {
     position: absolute;
     z-index: 4;
+    backdrop-filter: blur(1px);
 
     &>img:nth-child(1) {
-      @include section-check(7em, 7em,#5cb9b100);
+      @include section-check(5em, 5em, #5cb9b100);
       border-radius: 50%;
       position: absolute;
-      left: 900px;
+      left: 1000px;
       top: 400px;
     }
 
     &>img:nth-child(2) {
-      @include section-check(3em, 3em,#5cb9b100);
+      @include section-check(2em, 2em, #5cb9b100);
       border-radius: 50%;
       position: absolute;
-      left: 1000px;
+      left: 1100px;
       top: 400px;
     }
+
     &>img:nth-child(3) {
-      @include section-check(3em, 3em,#5cb9b100);
-      border-radius: 50%;
-      position: absolute;
-      left: 900px;
-      top: 350px;
-    }
-    &>img:nth-child(4) {
-      @include section-check(3em, 3em,#5cb9b100);
+      @include section-check(2em, 2em, #5cb9b100);
       border-radius: 50%;
       position: absolute;
       left: 1000px;
-      top: 500px;
+      top: 350px;
     }
-    &>img:nth-child(5) {
-      @include section-check(3em, 3em,#5cb9b100);
+
+    &>img:nth-child(4) {
+      @include section-check(1em, 1em, #5cb9b100);
       border-radius: 50%;
       position: absolute;
-      left: 1070px;
+      left: 1100px;
+      top: 500px;
+    }
+
+    &>img:nth-child(5) {
+      @include section-check(1em, 1em, #5cb9b100);
+      border-radius: 50%;
+      position: absolute;
+      left: 1170px;
       top: 430px;
     }
   }
@@ -127,16 +133,18 @@
   &>div:nth-child(3) {
     position: absolute;
     z-index: 3;
+    backdrop-filter: blur(1px);
 
     &>img:nth-child(1) {
-      @include section-check(fit-content , 3em,#5cb9b100);
+      @include section-check(fit-content, 3em, #5cb9b100);
       // border-radius: 50%;
       position: absolute;
       left: 1100px;
       top: 400px;
     }
+
     &>img:nth-child(2) {
-      @include section-check(fit-content , 1.6em,#5cb9b100);
+      @include section-check(fit-content, 1.6em, #5cb9b100);
       // border-radius: 50%;
       position: absolute;
       left: 1150px;
@@ -147,43 +155,16 @@
   &>div:nth-child(4) {
     position: absolute;
     z-index: 2;
-      &>img:nth-child(1){
-      @include section-check(1em, 1em,#5cb9b100);
+    backdrop-filter: blur(1px);
+
+    &>img:nth-child(1) {
+      @include section-check(fit-content, 4em, #5cb9b100);
       // border-radius: 50%;
       position: absolute;
       left: 1080px;
       top: 430px;
+    }
   }
-  &>img:nth-child(2){
-    @include section-check(1em, 1em,#5cb9b100);
-    // border-radius: 50%;
-    position: absolute;
-    left: 1000px;
-    top: 430px;
-}
-&>img:nth-child(3){
-  @include section-check(1em, 1em,#5cb9b100);
-  // border-radius: 50%;
-  position: absolute;
-  left: 1050px;
-  top: 430px;
-}
-&>img:nth-child(4){
-  @include section-check(1em, 1em,#5cb9b100);
-  // border-radius: 50%;
-  position: absolute;
-  left: 1040px;
-  top: 430px;
-}
-&>img:nth-child(5){
-  @include section-check(1em, 1em,#5cb9b100);
-  // border-radius: 50%;
-  position: absolute;
-  left: 1080px;
-  top: 430px;
-}
-}
-
 }
 
 // todo 여기있는 반복되는 코드들 @mixin으로 묶어서 정리
