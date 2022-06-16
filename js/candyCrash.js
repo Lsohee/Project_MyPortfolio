@@ -3,14 +3,18 @@
 // Ball이라는 함수가 있는데 변수 rpv가 있음 //^ 대문자니까 아마도 생성자 함수
 function Ball(r, p, v) {
   console.log(this)
+	// ? this를 알아보기 위해 console을 찍어보려고 했는데 안찍힘 호출이 안됐나
 	this.radius = r;
 	this.point = p;
 	this.vector = v;
 	this.maxVec = 15;
+	// * Math.floor --> 주어진 숫자와 같거나 작은 정수중에 가장 큰 수를 반환함
 	this.numSegment = Math.floor(r / 3 + 2);
+	// 빈 배열들 이 함수 안에서만 쓸 건가봐
 	this.boundOffset = [];
 	this.boundOffsetBuff = [];
 	this.sidePoints = [];
+	//? 이거는 본인을 가리키는 거 같은데 this.path === new Path()라는 함수 이게 맞아?
 	this.path = new Path({
 		fillColor: {
 			hue: Math.random() * 360,
@@ -19,7 +23,7 @@ function Ball(r, p, v) {
 		},
 		blendMode: 'lighter'
 	});
-
+	// 반복문이다 i가 numSegment의 값보다 작다
 	for (var i = 0; i < this.numSegment; i ++) {
 		this.boundOffset.push(this.radius);
 		this.boundOffsetBuff.push(this.radius);
@@ -30,8 +34,7 @@ function Ball(r, p, v) {
 		}));
 	}
 }
-
-// Ball이라는 함수의 prototype(얕은 복사한 속성들의 주소값)
+// Ball이라는 함수의 prototype(얕은 복사한 속성들의 주소값) --> 객체네
 Ball.prototype = {
 	iterate: function() {
 		this.checkBorders();
@@ -41,6 +44,7 @@ Ball.prototype = {
 		this.updateShape();
 	},
 
+	// ? if 문이 특이하네
 	checkBorders: function() {
 		var size = view.size;
 		if (this.point.x < -this.radius)
@@ -127,7 +131,7 @@ for (var i = 0; i < numBalls; i++) {
 		length: Math.random() * 10
 	});
 	var radius = Math.random() * 60 + 60;
-	balls.push(new Ball(radius, position, vector));
+	balls.push(new Ball(radius, position, vector)); //*배열에 공만드는 인스턴스 추가 (배열 메서드)
 }
 
 //onFrame이라는 함수가 있음
