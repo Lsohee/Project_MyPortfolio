@@ -4,6 +4,12 @@ const root2 = document.getElementById("root2");
 const layerArr = Array.from(root2.children);
 
 
+// const airBubble = document.getElementById("airBubble")
+
+console.log(layerArr[1])
+// layerArr[1].innerHTML = "<div>test</div>"
+
+
 
 let zoomArr, startSplice
 
