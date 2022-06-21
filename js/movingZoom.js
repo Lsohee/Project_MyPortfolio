@@ -32,4 +32,4 @@ let zoom = [
 
 ]
 
-export{zoom}
+export default zoom
