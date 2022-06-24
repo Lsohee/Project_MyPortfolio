@@ -18,7 +18,7 @@
 }
 
 #root1 {
-  @include section-check(100vw, 70vh);
+  @include section-check(1080px, 1800px);
   @include display-flex($justify: center);
 
   &>div {
@@ -67,7 +67,7 @@
     z-index: 5;
     backdrop-filter: blur(1px);
     &>div:nth-child(1) {
-      @include section-check(400px, fit-content);
+      @include section-check(fit-content, fit-content);
       position: absolute;
       left: 200px;
       top: 300px;
