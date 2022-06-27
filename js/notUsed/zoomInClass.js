@@ -51,6 +51,6 @@ wirte.textContent = ``
     }
   })
   // 요소를 에펙에서의 레이어처럼 써서 z-index로 겹친다음 크기를 키우는 비율을 다르게 둬서 줌인하는 듯한 효과를 줌
-  // console.log(wirte)
-  // wirte.classList.add("zoomOut")
-  // wirte.remove()
+  console.log(wirte)
+  wirte.classList.add("zoomOut")
+  wirte.remove()

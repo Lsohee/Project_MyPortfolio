@@ -2,19 +2,19 @@
 const container = document.getElementById("container");
 const root1 = document.getElementById("root1")
 const root2 = document.getElementById("root2");
-const intro = document.getElementById("intro")
+
 
 // pseudo 파일 import 
-import textContants from "./contantText.js"
+import writeContant from "./writeContant.js";
 import {zeroToI,IToMy, MyToMe,MeToMyself,MyselfToLast,LastToMyself,currentPage} from "./movementValue.js"
 
-
+writeContant()
 // memo 주석과 변수이름좀 똑바로 지어라
 
 
 // pseudo 내용 삽입(innerHTML에 삽입 string이고 배열이라 키값이 숫자임)
 // todo (나중에 객체로 바꾸는게 더 알아보기가 쉽겠다)
-intro.innerHTML = textContants.intro
+
 
 
 

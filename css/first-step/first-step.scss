@@ -11,7 +11,7 @@
   align-items: $align;
 }
 
-@mixin section-check ($width:100%, $hieght:100%, $background-color:#8fcbe410) {
+@mixin section-check ($width:100%, $hieght:100%, $background-color:#8fcae400) {
   width: $width;
   height: $hieght;
   background-color: $background-color;
@@ -62,10 +62,13 @@
     @include section-check(100%, 100%)
   }
 
+// pseudo layer 1
   &>div:nth-child(1) {
     position: absolute;
     z-index: 5;
     backdrop-filter: blur(1px);
+
+    // pseudo intro text
     &>div:nth-child(1) {
       @include section-check(fit-content, fit-content);
       position: absolute;
@@ -73,7 +76,7 @@
       top: 300px;
       font-size: 20px;
     }
-
+    // pseudo 연잎
     &>img:nth-child(2) {
       @include section-check(20em, 20em, #5cb9b100);
       border-radius: 50%;
@@ -81,39 +84,56 @@
       left: 1000px;
       top: 250px;
     }
+
+    // pseudo I 
+    &>div:nth-child(3){
+      @include section-check(fit-content, fit-content);
+      position: absolute;
+      left: 1040px;
+      top: 350px;
+      font-size: 10px;
+    }
   }
 
-  // memo 레이어 2
+  // pseudo 레이어 2
   &>div:nth-child(2) {
     position: absolute;
     z-index: 4;
     backdrop-filter: blur(1px);
 
+    // pseudo 내용 공기방울
     &>img:nth-child(1) {
-      @include section-check(5em, 5em, #5cb9b100);
+      @include section-check(7em, 7em, #5cb9b100);
       border-radius: 50%;
+      position: absolute;
+      left: 1000px;
+      top: 360px;
+    }
+    &>div:nth-child(2){
+      font-size: 1px;
       position: absolute;
       left: 1000px;
       top: 400px;
     }
-
-    &>img:nth-child(2) {
-      @include section-check(2em, 2em, #5cb9b100);
-      border-radius: 50%;
-      position: absolute;
-      left: 1100px;
-      top: 400px;
-    }
-
+    // pseudo wantToLearn
     &>img:nth-child(3) {
       @include section-check(2em, 2em, #5cb9b100);
       border-radius: 50%;
       position: absolute;
-      left: 1000px;
-      top: 350px;
+      left: 1150px;
+      top: 400px;
     }
 
+    // pseudo 좌우명
     &>img:nth-child(4) {
+      @include section-check(2em, 2em, #5cb9b100);
+      border-radius: 50%;
+      position: absolute;
+      left: 1100px;
+      top: 350px;
+    }
+    // pseudo 프로젝트
+    &>img:nth-child(5) {
       @include section-check(1em, 1em, #5cb9b100);
       border-radius: 50%;
       position: absolute;
@@ -121,7 +141,8 @@
       top: 500px;
     }
 
-    &>img:nth-child(5) {
+    // pseudo 장단점
+    &>img:nth-child(6) {
       @include section-check(1em, 1em, #5cb9b100);
       border-radius: 50%;
       position: absolute;
@@ -150,7 +171,14 @@
       left: 1150px;
       top: 450px;
     }
+    &>div:nth-child(3){
+      position: absolute;
+      left: 1150px;
+      top: 450px;
+
+    }
   }
+  
 
   &>div:nth-child(4) {
     position: absolute;
