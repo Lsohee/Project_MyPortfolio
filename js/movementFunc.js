@@ -50,11 +50,11 @@ let zoom = [
 // pseudo 물의 느낌을 연출하기 위해서 멀리있는 물체 (다음 레이어 요소)를 뿌옇게 보이는 backdropfiler
 function waterColorDeep(layerDiv){
 layerDiv.animate([{
-  opacity: 1
+  opacity: 1,
 },
 {opacity:0.9,offset:0.6},
   {
-  opacity: 0
+  opacity: 0,
 }], {
   duration: 2000,
   fill: "forwards"

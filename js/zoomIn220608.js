@@ -7,6 +7,7 @@ const root2 = document.getElementById("root2");
 // pseudo 파일 import 
 import writeContant from "./writeContant.js";
 import {zeroToI,IToMy, MyToMe,MeToMyself,MyselfToLast,LastToMyself,currentPage} from "./movementValue.js"
+import { layerArr } from "./movementFunc.js";
 
 writeContant()
 // memo 주석과 변수이름좀 똑바로 지어라
@@ -57,7 +58,6 @@ function movement() {
       currentPage.splice(4, 2,  false,true)
     } else if (event.wheelDelta > 0 && currentPage[5] === true) {
       LastToMyself(1,4)
-      console.log(currentPage)
       console.log("Myself에서 Me로 이동합니다")
     } else if (event.wheelDelta > 0 && currentPage[4] === true) {
       MeToMyself(1,3)

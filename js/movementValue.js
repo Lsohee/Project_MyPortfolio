@@ -102,16 +102,16 @@ function MyToMe(zoomArr, startSplice) {
     y: 500,
     ratio: 10,
     changeX: 0,
-    changeY: -40
+    changeY: 500
   });
   zoom[zoomArr]({
     layerDiv: 1,
     scale: 3.3,
     x: -320,
     y: -20,
-    ratio: 10,
-    changeX: -50,
-    changeY: -20
+    ratio: 4,
+    changeX: 80,
+    changeY: -500
   });
   zoom[zoomArr]({
     layerDiv: 2,
@@ -119,7 +119,7 @@ function MyToMe(zoomArr, startSplice) {
     x: -300,
     y: -0,
     ratio: 7,
-    changeX: -300,
+    changeX: -250,
     changeY: -20
   });
   zoom[zoomArr]({
@@ -153,7 +153,7 @@ function MeToMyself(zoomArr, startSplice) {
     layerDiv: 1,
     scale: 3.3,
     x: -320,
-    y: -20,
+    y: -40,
     ratio: 10,
     changeX: -50,
     changeY: -20
@@ -161,7 +161,7 @@ function MeToMyself(zoomArr, startSplice) {
   zoom[zoomArr]({
     layerDiv: 2,
     scale:7,
-    x: -300,
+    x: -250,
     y: -20,
     ratio: 17,
     changeX: -400,

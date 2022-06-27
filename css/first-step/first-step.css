@@ -105,7 +105,7 @@
   font-size: 1px;
   position: absolute;
   left: 1000px;
-  top: 400px;
+  top: 380px;
 }
 #root2 > div:nth-child(2) > img:nth-child(3) {
   width: 2em;
@@ -169,10 +169,10 @@
   left: 1150px;
   top: 450px;
 }
-#root2 > div:nth-child(3) > div:nth-child(3) {
+#root2 > div:nth-child(3) > img:nth-child(3) {
   position: absolute;
-  left: 1150px;
-  top: 450px;
+  left: 1020px;
+  top: 400px;
 }
 #root2 > div:nth-child(4) {
   position: absolute;
