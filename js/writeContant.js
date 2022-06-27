@@ -44,20 +44,20 @@ export default function writeContant(){
     let projectLinks = Array.from(contantDiv.children)
 
     // pseudo 각각의 프로젝트 설명 notion으로 이동하는 링크함수와 클릭 이벤트 연결
-    projectLinks[0].onclick = moveToCocktail 
-    projectLinks[0].style = " cursor: pointer;"
-
-    projectLinks[1].onclick = moveToIDle
-    projectLinks[1].style = " cursor: pointer;"
-    
-    projectLinks[2].onclick = moveToCube
+    projectLinks[2].onclick = moveToCocktail 
     projectLinks[2].style = " cursor: pointer;"
-    
-    projectLinks[3].onclick = moveToFishgame
-    projectLinks[3].style = " cursor: pointer;"
 
-    projectLinks[4].onclick = moveToPortfolio
+    projectLinks[3].onclick = moveToIDle
+    projectLinks[3].style = " cursor: pointer;"
+    
+    projectLinks[4].onclick = moveToCube
     projectLinks[4].style = " cursor: pointer;"
+    
+    projectLinks[5].onclick = moveToFishgame
+    projectLinks[5].style = " cursor: pointer;"
+
+    projectLinks[6].onclick = moveToPortfolio
+    projectLinks[6].style = " cursor: pointer;"
     
   })
 
