@@ -98,10 +98,10 @@ function MyToMe(zoomArr, startSplice) {
   zoom[zoomArr]({
     layerDiv: 0,
     scale: 10,
-    x: 0,
+    x: -70,
     y: 500,
     ratio: 10,
-    changeX: 0,
+    changeX: -70,
     changeY: 500
   });
   zoom[zoomArr]({
@@ -143,17 +143,17 @@ function MeToMyself(zoomArr, startSplice) {
   zoom[zoomArr]({
     layerDiv: 0,
     scale: 10,
-    x: 0,
-    y: -40,
+    x: -70,
+    y: 500,
     ratio: 10,
-    changeX: 0,
-    changeY: -40
+    changeX: -70,
+    changeY: 500
   });
   zoom[zoomArr]({
     layerDiv: 1,
     scale: 3.3,
-    x: -320,
-    y: -40,
+    x: 80,
+    y: -500,
     ratio: 10,
     changeX: -50,
     changeY: -20
@@ -197,8 +197,8 @@ function MyselfToLast(zoomArr, startSplice) {
   zoom[zoomArr]({
     layerDiv: 1,
     scale: 3.3,
-    x: -320,
-    y: -20,
+    x: 80,
+    y: -500,
     ratio: 10,
     changeX: -50,
     changeY: -20
@@ -242,8 +242,8 @@ function LastToMyself(zoomArr, startSplice) {
   zoom[zoomArr]({
     layerDiv: 1,
     scale: 3.3,
-    x: -320,
-    y: -20,
+    x: 80,
+    y: -500,
     ratio: 10,
     changeX: -50,
     changeY: -20

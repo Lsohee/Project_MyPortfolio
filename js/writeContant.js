@@ -5,7 +5,8 @@ const intro = document.getElementById("intro")
 const I = document.getElementById("I")
 const contantDiv = document.getElementById("contants")
 const Me = document.getElementById("me")
-
+const Myself1 = document.getElementById("Myself1")
+const Myself2 = document.getElementById("Myself2")
 
 // pseudo 버튼이 될 공기방울 요소 get
 const wantToLearnBtn = document.getElementById("wantToLearnBtn")
@@ -64,12 +65,19 @@ export default function writeContant(){
   //  pseudo 내용
   intro.innerHTML = textContants.intro
   I.innerHTML= textContants.I
+  Myself1.innerHTML = textContants.Myself1
+  Myself2.innerHTML = textContants.Myself2
+
+
   pickMeBtn.addEventListener("click",()=>{
     Me.src = "./img/뽑아야하는 이유 3px.svg"
   })
   makeHappy.addEventListener("click",()=>{
     Me.src = "./img/행복하게 하는 것 저는 행복을 자아 실현이라고 생각합니다 거창하게 들리지만 그 방법은 간단합니다 내가 좋아하는 것, 싫어하는 것등등 나에 대한 것들을 하나씩 알아가면 어느 순간 내가 행복해지려면 무엇이 필요한지 알 수 있을 거라는게 제 결론입니다._행복하게 하는 것 저는 행복을 자아 실현이라고 생각합니다 거창하게 들리지만 그 방법은 간단합니다 내가 좋아하는 것, 싫어.svg"
   })
+
+
+
 }
 
 // pseudo 각각의 프로젝트의 링크를 연결해주는 함수

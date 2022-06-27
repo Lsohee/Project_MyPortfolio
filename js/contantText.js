@@ -9,7 +9,12 @@ let textContants = {
 
   "wantToLearn" : "파이선, 자바등 다른 언어<br>심리학<br>뇌과학<br> 유니버셜 디자인 (같은 맥락으로 수어와 점자<br>철학<br>사회학<br>개발의 역사<br>교육학<br>색채학<br>미술사<br>통계학 <br> 편집 디자인",
 
-  "projects":"각각의 단어를 클릭하시면<br> 저의 프로젝트 과정을 담은 <br>notion 페이지로 이동하실 수 있습니다 <div>cocktail</div> <div>아이들</div> <div>cube</div> <div>fish game</div><div>나</div>"
+  "projects":"각각의 단어를 클릭하시면<br> 저의 프로젝트 과정을 담은 <br>notion 페이지로 이동하실 수 있습니다 <div>cocktail</div> <div>아이들</div> <div>cube</div> <div>fish game</div><div>나</div>",
+
+  "Myself1": "<img src='./img/Myself.svg'>",
+
+  "Myself2": "<img src = './img/퍼블리셔 입니다.svg'>"
+
 }
   
   export default textContants
