@@ -18,6 +18,12 @@ writeContant()
 
 
 
+window.onload = function(){
+  console.log(window.outerWidth)
+  if(window.outerWidth <1730){
+    alert("this is not good size to enjoy my portfolio // best size is window.outerHeight = '1080' window.outerWidth = '1730'")
+  }
+}
 
 
 // pseudo 맨 밑까지 스크롤이 내려갔을시 root1을 제거하고 스크롤 이벤트 함수 호출
