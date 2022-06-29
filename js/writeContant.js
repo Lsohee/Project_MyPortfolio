@@ -1,5 +1,8 @@
 import textContants from "./contantText.js"
 
+var jsonObj ;
+
+
 // pseudo text들어있는 div get
 const intro = document.getElementById("intro")
 const I = document.getElementById("I")
@@ -22,7 +25,7 @@ const makeHappy = document.getElementById("makeHappy")
 
 // pseudo 이벤트 함수 묶음
 export default function writeContant(){
-
+  
   // pseudo My 페이지에서의 클릭 이벤트 
   wantToLearnBtn.addEventListener("click", ()=>{
     contantDiv.innerHTML = textContants.wantToLearn

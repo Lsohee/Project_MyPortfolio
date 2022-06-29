@@ -3,6 +3,10 @@ const container = document.getElementById("container");
 const root1 = document.getElementById("root1")
 const root2 = document.getElementById("root2");
 
+// a_json = open('경로/a.json', encoding = 'utf-8')
+
+
+
 
 // pseudo 파일 import 
 import writeContant from "./writeContant.js";
