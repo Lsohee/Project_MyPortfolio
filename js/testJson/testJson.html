@@ -6,22 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
-<script>
+<!-- <script>
   let jsonObj
-  var req = new XMLHttpRequest()
   function testJson(){
-    
-    req.addEventListener("load",()=>{
-        console.log(req.responseText)
-        realObj = JSON.parse(req.responseText)
-        console.log(realObj)
-      })
+    var req = new XMLHttpRequest()
 
+    req.addEventListener("load",()=>{
+      console.log(req.responseText)
+      realObj = JSON.parse(req.responseText)
+      console.log(realObj)
+    })
     req.open("GET","./test.json",true);
     req.send(null)
   }
-    </script>
-  <body onload="testJson()">
+    </script> -->
+  <body>
     hello
+    <script src="./testJson.js"></script>
 </body>
 </html>
